@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Subject List</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Subjects
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+       <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+              <a type="button" href="/createSubject" class="btn btn-primary btn-lg mb-3">Add Subject</a>
+              <div class="table-responsive">
+                  <table id="zero_config" class="table table-striped table-bordered">
+                      <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Code</th>
+                              <th>Name</th>
+                              <th>Type</th>
+                              <th>Status</th>
+                              <th>Created</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for Subject in Subjects %}
+                        <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td>{{ Subject.Code }}</td>
+                          <td>{{ Subject.Name }}</td>
+                          <td>{{ Subject.Type }}</td>
+                          <td>{{ Subject.Status }}</td>
+                          <td>{{ Subject.created }}</td>
+              
+              
+                          <td>
+                            <a class="btn btn-primary" href="{% url 'updateSubject' Subject.id %}"
+                              >Edit</a
+                            >
+                            <a class="btn btn-danger" href="{% url 'deleteSubject' Subject.id %}" 
+                              >Delete</a
+                            >
+                          </td>
+                        </tr>
+                        {% endfor %}
+                       
+                                 </tbody>
+                       <tfoot>
+                        <div class="row">
+                         
+                            <div class="col-sm-12 col-md-6">
+                              <div id="zero_config_filter" class="dataTables_filter">
+                                <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="zero_config"></label>
+                              </div></div></div>
+
+                        
+                      </tfoot>
+                  </table>
+              </div>
+              <div class="row mt-3">
+               
+                  <div class="col-sm-12 col-md-7">
+                  <div class="dataTables_paginate paging_simple_numbers" id="zero_config_paginate">
+                    {% if Subjects.has_other_pages %}
+                    <ul class="pagination">
+
+                      {% if Subjects.has_previous %}
+                      <li class="paginate_button page-item previous " id="zero_config_previous">
+                        <a href="?page={{ Subjects.previous_page_number }}" aria-controls="zero_config" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                      </li>
+                      {% else %}
+                      <li class="paginate_button page-item previous disabled" id="zero_config_next"><a href="#" aria-controls="zero_config" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+
+                    {% endif %}
+
+               
+                        {% for i in Subjects.paginator.page_range %}
+                        {% if Subjects.number == i %}
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="zero_config" data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a></li>
+
+                        {% else %}
+                        <li class="paginate_button page-item "><a href="?page={{ i }}" aria-controls="zero_config" data-dt-idx="2" tabindex="0" class="page-link">{{ i }}</a></li>
+
+                        {% endif %}
+                      {% endfor %}
+
+
+                        {% if Subjects.has_next %}
+                        <li class="paginate_button page-item next" id="zero_config_next"><a href="?page={{ Subjects.next_page_number }}" aria-controls="zero_config" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+
+                      {% else %}
+                      <li class="paginate_button page-item next disabled" id="zero_config_next"><a href="#" aria-controls="zero_config" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                      {% endif %}
+                      </ul>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+  
+          </div></div>
+      </div>
+       </div>
+
+     </div>
+      
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

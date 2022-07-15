@@ -1,0 +1,431 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Stundent Admission</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Admit Stundent
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+    
+      <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/StudentAdmission"  class="btn btn-info">Close</a>
+
+            <a class="btn btn-danger" href="{% url 'deleteStudentAdmission' StudentId %}" 
+                            
+            >Delete</a
+          >
+          </div>
+        </div>
+  
+        <div class="card ">
+          <div class="card">
+            <div class="card">
+              <div class="card-body">
+  
+                {%if form != null%}
+               
+                <div class="col-md-12">
+                    <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title">About Admission</h4>
+                             
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">Admit Student</label>
+                                <div class="col-sm-9">
+                                  {% render_field form.AdmissionStatus placeholder=form.AdmissionStatus.label class+="form-control"  %}
+                                </div>
+                            </div>
+                           
+                           
+                        
+                    </div>
+                  </div>
+             
+                {% endif %}
+                <hr>
+                <h4 class="card-title">Student Information</h4>
+
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-right control-label col-form-label"
+                    >First Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.FirstName placeholder=form.FirstName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Middle Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.MiddleName placeholder=form.MiddleName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Last Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.LastName placeholder=form.LastName.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Date Of Birth</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.DateOfBirth placeholder=form.DateOfBirth.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Birth Place</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.BirthPlace placeholder=form.BirthPlace.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Gender</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Gender placeholder=form.Gender.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Health
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Health placeholder=form.Health.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Nationality</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Nationality placeholder=form.Nationality.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Region</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Region placeholder=form.Region.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Street</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Street placeholder=form.Street.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Home Address
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.HomeAddress placeholder=form.HomeAddress.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Religion</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Religion placeholder=form.Religion.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Mobile
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Mobile placeholder=form.Mobile.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Programme</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Programme placeholder=form.Programme.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >ClassName
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.ClassName placeholder=form.ClassName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >SchoolType</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.SchoolType  placeholder=form.SchoolType.label class+="form-control" %}
+                  </div>
+                </div>
+                <hr>
+                <h4 class="card-title">Student Attachments</h4>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Photo
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Photo placeholder=form.Photo.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Birth Certificate
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.BirthCertificate placeholder=form.BirthCertificate.label class+="form-control"%}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Result Certificate
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.ResultCertificate placeholder=form.ResultCertificate.label class+="form-control"%}
+                  </div>
+                </div>
+              
+              </div>
+           
+            </div>
+          </div>
+        
+       
+           
+          </div>
+        </div>
+
+        <div class="card ">
+    
+        <div class="card">
+          <div class="card">
+            <div class="card-body">
+  
+              <h4 class="card-title">Guardian Information</h4>
+  
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >First Name</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeFirstName placeholder=form.RelativeFirstName.label class+="form-control"%}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Last Name</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeMiddleName placeholder=form.RelativeMiddleName.label class+="form-control"%}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Last Name</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeLastName placeholder=form.RelativeLastName.label class+="form-control" %}
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Gender</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeGender placeholder=form.RelativeGender.label class+="form-control" %}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Relation</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeRelation placeholder=form.RelativeRelation.label class+="form-control" %}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Mobile</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeMobile placeholder=form.RelativeMobile.label class+="form-control" %}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Email
+                </label>
+                <div class="col-sm-9">
+                  {% render_field form.RelativeEmail placeholder=form.RelativeEmail.label class+="form-control" %}
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Home Address</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeHomeAddress placeholder=form.RelativeHomeAddress.label class+="form-control"%}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Occupation</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeOccupation placeholder=form.RelativeOccupation.label class+="form-control" %}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label"
+                  >Work Address</label
+                >
+                <div class="col-sm-9">
+                  {% render_field form.RelativeWorkAddress placeholder=form.RelativeWorkAddress.label class+="form-control"%}
+                </div>
+              </div>
+  
+            
+          </div>
+        </div>
+      </div>
+        <div class="card">
+          <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Father Information</h4>
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherFirstName placeholder=form.FatherFirstName.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Middle Name</label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherMiddleName placeholder=form.FatherMiddleName.label class+="form-control"  %}
+                        </div>
+                    </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Last Name </label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherLastName placeholder=form.FatherLastName.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Phone Number</label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherPhoneNumber placeholder=form.FatherPhoneNumber.label class+="form-control"  %}
+                        </div>
+                    </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Occupation </label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherOccupation placeholder=form.FatherOccupation.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Home Address</label>
+                        <div class="col-sm-9">
+                          {% render_field form.FatherHomeAddress placeholder=form.FatherHomeAddress.label class+="form-control"  %}
+                        </div>
+                    </div>
+             <hr>
+                    <h4 class="card-title">Mother Information</h4>
+                    <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherFirstName placeholder=form.MotherFirstName.label class+="form-control"  %}
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Middle Name</label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherMiddleName placeholder=form.MotherMiddleName.label class+="form-control"  %}
+                      </div>
+                  </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Last Name </label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherLastName placeholder=form.MotherLastName.label class+="form-control"  %}
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Phone Number</label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherPhoneNumber placeholder=form.MotherPhoneNumber.label class+="form-control"  %}
+                      </div>
+                  </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Occupation </label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherOccupation placeholder=form.MotherOccupation.label class+="form-control"  %}
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Home Address</label>
+                      <div class="col-sm-9">
+                        {% render_field form.MotherHomeAddress placeholder=form.MotherHomeAddress.label class+="form-control"  %}
+                      </div>
+                  </div>
+                
+                  </div>
+          </div>
+        </div>
+  
+ 
+    </div>
+  
+      </form>
+    </div>
+  
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

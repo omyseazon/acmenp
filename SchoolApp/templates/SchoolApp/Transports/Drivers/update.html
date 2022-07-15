@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Section</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit Section
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <div class="card-body">
+                {% comment %} <h4 class="card-title">Edit Driver</h4> {% endcomment %}
+                <h4 class="card-title">Driver Information</h4>
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-right control-label col-form-label"
+                    >First Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.FirstName placeholder=form.FirstName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Middle Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.MiddleName placeholder=form.MiddleName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Last Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.LastName placeholder=form.LastName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Phone Number</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Mobile placeholder=form.Mobile.label class+="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">Licence Number</label>
+                    <div class="col-sm-9">
+                      {% render_field form.LicenceNumber placeholder=form.LicenceNumber.label class+="form-control"  %}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">Licence Expiry Date</label>
+                  <div class="col-sm-9">
+                    {% render_field form.LicenceExpiryDate placeholder=form.LicenceExpiryDate.label class+="form-control"  %}
+                  </div>
+              </div>
+
+              <hr>
+              <h4 class="card-title">Next Of Kin Information</h4>
+              <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                <div class="col-sm-9">
+                  {% render_field form.NextOfKinFirstName placeholder=form.NextOfKinFirstName.label class+="form-control"  %}
+                </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-3 text-right control-label col-form-label">Middle Name</label>
+              <div class="col-sm-9">
+                {% render_field form.NextOfKinMiddleName placeholder=form.NextOfKinMiddleName.label class+="form-control"  %}
+              </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+            <div class="col-sm-9">
+              {% render_field form.NextOfKinLastName placeholder=form.NextOfKinLastName.label class+="form-control"  %}
+            </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">Phone Number</label>
+          <div class="col-sm-9">
+            {% render_field form.NextOfKinPhoneNumber placeholder=form.NextOfKinPhoneNumber.label class+="form-control"  %}
+          </div>
+      </div>
+            </div>
+           
+                <div class="border-top">
+                  <div class="card-body">
+                      <button type="submit" class="btn btn-success">Save</button>
+                      <a href="{% url 'Section' %}" type="submit" class="btn btn-danger">Cancel</a>
+                  </div>
+              </div>
+            </form>
+        </div>
+
+     </div>
+    </div>
+    </div>
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

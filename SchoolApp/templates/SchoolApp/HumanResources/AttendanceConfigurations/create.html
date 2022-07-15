@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">working Hours</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Create working Hours 
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+     <div class="row">
+      <div class="col-md-6">
+        
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                  <a href="{% url 'AttendanceConfiguration' %}" type="submit" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            <div class="card">
+
+              {% if data.InTime.value != null %}
+              <div class="card-body">
+                
+                <h4 class="card-title">Edit working Hours</h4> 
+                <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">InTime</label>
+                    <div class="col-sm-9">
+                      {% render_field data.InTime placeholder=form.InTime.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">OutTime</label>
+                  <div class="col-sm-9">
+                    {% render_field data.OutTime placeholder=form.OutTime.label class+="form-control" id+="seeAnotherField" %}
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">working Hours</label>
+                <div class="col-sm-9 mt-2">
+                  {% if data.TotalHour.value < 2 %}
+                  {{data.TotalHour.value  }} Hour
+                  {% else %}
+                  {{data.TotalHour.value  }} Hours
+                  {% endif %}
+                
+                </div>
+            </div>
+              {% else %}
+             <div class="card-body">
+                
+                <h4 class="card-title">Configure working Hours </h4> 
+                <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">InTime</label>
+                    <div class="col-sm-9">
+                      {% render_field form.InTime placeholder=form.InTime.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">OutTime</label>
+                  <div class="col-sm-9">
+                    {% render_field form.OutTime placeholder=form.OutTime.label class+="form-control" id+="seeAnotherField" %}
+                  </div>
+              </div>
+
+              {% comment %} <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">TotalHour</label>
+                <div class="col-sm-9">
+                  {% render_field form.TotalHour placeholder=form.TotalHour.label class+="form-control" id+="seeAnotherField" %}
+                </div>
+            </div> {% endcomment %}
+
+              {% endif %}
+                
+               
+                </div>
+              </div>
+            </form>
+        
+
+     </div>
+    </div>
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+ 
+{% endblock content %}
+    
+ 
+
+

@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title"> Staff</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Create Staff
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/Staff"  class="btn btn-danger">Close</a>
+          </div>
+        </div>
+  
+        <div class="row ">
+
+          <div class="col-md-6 ">
+            <div class="card">
+              <div class="card-body">
+  
+                <h4 class="card-title">Staff</h4>
+             
+               
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-right control-label col-form-label"
+                    >First Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.FirstName placeholder=form.FirstName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Middle Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.MiddleName placeholder=form.MiddleName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Last Name</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.LastName placeholder=form.LastName.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Phone</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Phone placeholder=form.Phone.label class+="form-control form-control date-inputmask" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Email</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Email placeholder=form.Email.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Emergence Phone </label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.EmergencePhoneNumber placeholder=form.EmergencePhoneNumber.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Date Of Birth
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.DateOfBirth placeholder=form.DateOfBirth.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Gender</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Gender placeholder=form.Gender.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Marital Status</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.MaritalStatus placeholder=form.MaritalStatus.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Current Address</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.CurrentAddress placeholder=form.CurrentAddress.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Permanent Address
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.PermanentAddress placeholder=form.PermanentAddress.label class+="form-control" %}
+                  </div>
+                </div>
+               
+              </div>
+           
+            </div>
+          </div>
+  
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Qualification</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.Qualification placeholder=form.Qualification.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Work Experience
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.WorkExperience placeholder=form.WorkExperience.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Medical Insurance Number</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.MedicalInsuranceNumber placeholder=form.MedicalInsuranceNumber.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Department
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.DepartmentName placeholder=form.DepartmentName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Designation</label
+                  >
+                  <div class="col-sm-9">
+                    {% render_field form.DesignationName  placeholder=form.DesignationName.label class+="form-control" %}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Role
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Role placeholder=form.Role.label class+="form-control" %}
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Joining Date
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.JoiningDate placeholder=form.JoiningDate.label class+="form-control"%}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Photo
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Photo placeholder=form.Photo.label class+="form-control"%}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 text-right control-label col-form-label"
+                    >Note
+                  </label>
+                  <div class="col-sm-9">
+                    {% render_field form.Note placeholder=form.Note.label class+="form-control"%}
+                  </div>
+                </div>
+              </div>
+              <div class="border-top">
+                <div class="card-body"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+ 
+{% endblock content %}
+    
+ 
+
+

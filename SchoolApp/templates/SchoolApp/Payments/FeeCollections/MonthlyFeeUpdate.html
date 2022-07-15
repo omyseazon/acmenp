@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Monthly Fee </h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit Monthly Fee 
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+   
+    <div class="container-fluid">
+      <div class="row">
+       <div class="col-md-12">
+         <div class="card">
+           <form method="POST" class="form-horizontal">
+             {% csrf_token %}
+             <div class="border-top">
+               <div class="card-body">
+                 <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                 <a class="btn btn-danger" href="{% url 'deleteMonthly' Monthly_id %}" >Delete</a>
+                 <a href="{% url 'updateFeeCollection' FeeCollection_id %}" type="submit" class="btn btn-info">Cancel</a>
+                 
+                </div>
+           </div>
+           <div class="card">
+               <div class="card-body">
+               
+                <div class="row">
+                  <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                    <label class="required">Fee</label>
+                    {% render_field ItemForm.Fee placeholder=ItemForm.Fee.label class+="form-control"  %}
+                    
+                  </div>
+                  <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                    <label class="required">Discount</label>
+                    {% render_field ItemForm.Discount placeholder=ItemForm.Discount.label class+="form-control"  %}
+                    
+                  </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">January</label>
+                      {% render_field ItemForm.January placeholder=ItemForm.January.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">February</label>
+                      {% render_field ItemForm.February placeholder=ItemForm.February.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">March</label>
+                      {% render_field ItemForm.March placeholder=ItemForm.March.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">April</label>
+                      {% render_field ItemForm.April placeholder=ItemForm.April.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">May</label>
+                      {% render_field ItemForm.May placeholder=ItemForm.May.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">June</label>
+                      {% render_field ItemForm.June placeholder=ItemForm.June.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">July</label>
+                      {% render_field ItemForm.July placeholder=ItemForm.July.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">August</label>
+                      {% render_field ItemForm.August placeholder=ItemForm.August.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">September</label>
+                      {% render_field ItemForm.September placeholder=ItemForm.September.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">October</label>
+                      {% render_field ItemForm.October placeholder=ItemForm.October.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">November</label>
+                      {% render_field ItemForm.November placeholder=ItemForm.November.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+                      <label class="required">December</label>
+                      {% render_field ItemForm.December placeholder=ItemForm.December.label class+="form-control"  %}
+                    </div>
+               </div>
+          
+        
+      
+          </div>
+             </div>
+           </form>
+         </div>
+ 
+      </div>
+     </div>
+     </div>
+    
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Staff Attendance</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Create Attendance
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+     <div class="row">
+      <div class="col-md-6">
+        
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+             
+            <div class="card">
+                <div class="card-body">
+                
+                    {% comment %} <h4 class="card-title">Edit StaffAttendance</h4> {% endcomment %}
+                    <div class="form-group row">
+                        <label  class="col-sm-3 text-right control-label col-form-label">Staff</label>
+                        <div class="col-sm-9">
+                          {% render_field form.Staff placeholder=form.Staff.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-3 text-right control-label col-form-label">In Time</label>
+                      <div class="col-sm-9">
+                        {% render_field form.InTime placeholder=form.InTime.label class+="form-control" id+="seeAnotherField" %}
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">Out Time</label>
+                    <div class="col-sm-9">
+                      {% render_field form.OutTime placeholder=form.OutTime.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">Permission In</label>
+                  <div class="col-sm-9">
+                    {% render_field form.PermissionIn placeholder=form.PermissionIn.label class+="form-control"  %}
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">Permission Out</label>
+                <div class="col-sm-9">
+                  {% render_field form.PermissionOut placeholder=form.PermissionOut.label class+="form-control"  %}
+                </div>
+            </div>
+           
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">Day Info</label>
+          <div class="col-sm-9">
+            {% render_field form.DayInfo placeholder=form.DayInfo.label class+="form-control"  %}
+          </div>
+      </div>
+      <div class="form-group row">
+        <label  class="col-sm-3 text-right control-label col-form-label">Remarks</label>
+        <div class="col-sm-9">
+          {% render_field form.Remarks placeholder=form.Remarks.label class+="form-control"  %}
+        </div>
+    </div>
+
+
+                </div>
+              </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                  <a href="{% url 'StaffAttendance' %}" type="submit" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            </form>
+        
+
+     </div>
+     <div class="col-md-6">
+     
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="form-group row">
+            <label  class="col-sm-4 text-right control-label col-form-label">Total Working Hours:</label>
+            <div class="col-sm-8 mt-2 " >
+            {{form.TotalHour.value}} Hours
+            </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-4 text-right control-label col-form-label">Over Time:</label>
+          <div class="col-sm-8 mt-2 " >
+          {{form.OverTime.value}} Hours
+          </div>
+      </div>
+      <div class="form-group row">
+        <label  class="col-sm-4 text-right control-label col-form-label">Late SignIn:</label>
+        <div class="col-sm-8 mt-2 " >
+        {{form.LateSignIn.value}} Hours
+        </div>
+    </div>
+    <div class="form-group row">
+      <label  class="col-sm-4 text-right control-label col-form-label">Early SignOut:</label>
+      <div class="col-sm-8 mt-2 " >
+      {{form.EarlySignOut.value}} Hours
+      </div>
+  </div>
+     </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+ 
+{% endblock content %}
+    
+    
+
+

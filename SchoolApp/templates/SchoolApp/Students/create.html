@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Create Student </h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Create Student
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+            <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="card-body">
+                    {% comment %} <h4 class="card-title">Edit Type</h4> {% endcomment %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Student Id</label>
+                        <div class="col-sm-9">
+                          {% render_field form.StudentId placeholder=form.StudentId.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                      <div class="col-sm-9">
+                        {% render_field form.FirstName placeholder=form.FirstName.label class+="form-control"  %}
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                    <div class="col-sm-9">
+                      {% render_field form.LastName placeholder=form.LastName.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="fname" class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                  <div class="col-sm-9">
+                    {% render_field form.Gender placeholder=form.Gender.label class+="form-control"  %}
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Date Of Birth</label>
+                <div class="col-sm-9">
+                  {% render_field form.DateOfBirth placeholder=form.DateOfBirth.label class+="form-control"  %}
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="fname" class="col-sm-3 text-right control-label col-form-label">School Type</label>
+              <div class="col-sm-9">
+                {% render_field form.SchoolType placeholder=form.SchoolType.label class+="form-control"  %}
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Class </label>
+            <div class="col-sm-9">
+              {% render_field form.ClassName placeholder=form.ClassName.label class+="form-control"  %}
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="fname" class="col-sm-3 text-right control-label col-form-label">Grade</label>
+          <div class="col-sm-9">
+            {% render_field form.Grade placeholder=form.Grade.label class+="form-control"  %}
+          </div>
+      </div>
+    
+      
+    <div class="form-group row">
+      <label for="fname" class="col-sm-3 text-right control-label col-form-label">Photo</label>
+      <div class="col-sm-9">
+        {% render_field form.Photo name="Photo"  placeholder=form.Photo.label class+="form-control"  %}
+      </div>
+  </div>
+ 
+  <div class="form-group row">
+    <div class="col-sm-9">
+      <p class="ml-5">Generate Id Card <span>{% render_field form.GenerateIdCard placeholder=form.GenerateIdCard.label class+="ml-3"  %}</span> </p>
+    </div>
+</div>
+                </div>
+                <div class="border-top">
+                  <div class="card-body">
+                      <button type="submit" name="save_and_add" class="btn btn-info">Save and Add new</button>
+                      <a href="{% url 'Student' %}"  class="btn btn-danger">Close</a>
+                  </div>
+              </div>
+            </form>
+        </div>
+
+     </div>
+    </div>
+    </div>
+    {% include 'ConteenApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

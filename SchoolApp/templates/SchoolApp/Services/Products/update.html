@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Product</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit  Product
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                <a href="{% url 'Product' %}" type="submit" class="btn btn-danger">Cancel</a>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+               
+<div >
+<h4 class="card-title">General Product Info</h4> 
+<div class="form-group row">
+    <label  class="col-sm-3 text-right control-label col-form-label">Name</label>
+    <div class="col-sm-9">
+      {% render_field form.ProductName placeholder=form.ProductName.label class+="form-control" id="ProductName" %}
+    </div>
+</div>
+<div class="form-group row">
+  <label  class="col-sm-3 text-right control-label col-form-label">Category</label>
+  <div class="col-sm-9">
+    {% render_field form.Category placeholder=form.Category.label class+="form-control" id="Category" %}
+  </div>
+</div>
+
+<div class="form-group row">
+<label  class="col-sm-3 text-right control-label col-form-label">Unit</label>
+<div class="col-sm-9">
+  {% render_field form.Unit placeholder=form.Unit.label class+="form-control"  %}
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-sm-3 text-right control-label col-form-label">AgeOrClass</label>
+<div class="col-sm-9">
+  {% render_field form.AgeOrClass placeholder=form.AgeOrClass.label class+="form-control" id="AgeOrClass" %}
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-sm-3 text-right control-label col-form-label">Status</label>
+<div class="col-sm-9">
+{% render_field form.Status placeholder=form.Status.label class+="form-control"  %}
+</div>
+</div>
+
+<div class="form-group row" >
+<label  class="col-sm-3 text-right control-label col-form-label">Selling Price</label>
+<div class="col-sm-9">
+{% render_field form.SellingPrice placeholder=form.SellingPrice.label class+="form-control"  %}
+</div>
+</div>
+
+<hr>
+<h4 class="card-title">For Uniform Product (Optional)</h4> 
+<div class="form-group row">
+<label  class="col-sm-3 text-right control-label col-form-label">Size</label>
+<div class="col-sm-9">
+  {% render_field form.Size placeholder=form.Size.label class+="form-control" id="Size" %}
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-sm-3 text-right control-label col-form-label">Color</label>
+<div class="col-sm-9">
+{% render_field form.Color placeholder=form.Color.label class+="form-control" id="Color" %}
+</div>
+</div>
+</div>
+              </div>
+            </div>
+          </form>
+      
+        </div>
+
+     </div>
+    </div>
+    </div>
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

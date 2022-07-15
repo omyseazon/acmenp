@@ -1,0 +1,436 @@
+{% load static %}
+<aside class="left-sidebar" data-sidebarbg="skin5">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav">
+        <ul id="sidebarnav" class="p-t-30">
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="/dashboard"
+              aria-expanded="false"
+              ><i class="mdi mdi-view-dashboard"></i
+              ><span class="hide-menu">Dashboard</span></a
+            >
+          </li>
+          {% comment %} <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="charts.html"
+              aria-expanded="false"
+              ><i class="mdi mdi-chart-bar"></i
+              ><span class="hide-menu">Charts</span></a
+            >
+          </li> {% endcomment %}
+         
+         
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-school"></i
+              ><span class="hide-menu">Academics </span></a
+            >
+            <ul aria-expanded="false" class="collapse first-level">
+              <li class="sidebar-item">
+                <a href="/Programme" class="sidebar-link"
+                  ><i class="mdi mdi-note-outline"></i
+                  ><span class="hide-menu"> Programmes </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Section" class="sidebar-link"
+                  ><i class="mdi mdi-note-outline"></i
+                  ><span class="hide-menu"> Sections </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Subject" class="sidebar-link"
+                  ><i class="mdi mdi-note-outline"></i
+                  ><span class="hide-menu"> Subjects </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/course" class="sidebar-link"
+                  ><i class="mdi mdi-note-outline"></i
+                  ><span class="hide-menu"> Classes </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/SchoolType" class="sidebar-link"
+                  ><i class="mdi mdi-note-plus"></i
+                  ><span class="hide-menu"> School Types </span></a
+                >
+              </li>
+            </ul>
+          </li>
+        
+           <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-face"></i
+              ><span class="hide-menu">Student Infomation </span></a
+            >
+            <ul aria-expanded="false" class="collapse first-level">
+              <li class="sidebar-item">
+                <a href="/createStudentAdmission" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Admission form </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/StudentAdmission" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Admissions </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Student" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Students </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/StudentEnrollment" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Enroll Student </span></a
+                >
+              </li>
+             
+              <li class="sidebar-item">
+                <a href="/Student" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Relatives </span></a
+                >
+              </li>
+            </ul>
+
+           
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-bus"></i
+              ><span class="hide-menu">Transport </span></a
+            >
+           
+
+            <ul aria-expanded="false" class="collapse first-level">
+            
+              <li class="sidebar-item">
+                <a href="/Route" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Routes </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Driver" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Drivers </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Vehicle" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Vehicles </span></a
+                >
+              </li>
+             
+              <li class="sidebar-item">
+                <a href="/AssignVehicle" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> AssignVehicle </span></a
+                >
+              </li>
+            </ul>
+
+           
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-hotel"></i
+              ><span class="hide-menu">Hostel </span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/HostelRoom" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> HostelRoom </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/RoomType" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> RoomType </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/Hostel" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Hostels </span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-account"></i
+              ><span class="hide-menu">Human Resources </span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/Department" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Departments </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Designation" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Designations </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/Role" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Roles </span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a href="/createAttendanceConfiguration" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> working Hours </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Staff" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Staff </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/StaffAttendance" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Staff Attendance </span></a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-mdi mdi-shopping"></i
+              ><span class="hide-menu">School Service</span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/ProductCategory" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Categories </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Unit" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Units </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/Supplier" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Suppliers </span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a href="/Product" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Products  </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Purchase" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Purchases </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/Sale" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Sales </span></a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-cash"></i
+              ><span class="hide-menu">School Payments</span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/FeeType" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Categories </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/FeeDiscount" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> Discounts </span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a href="/Fee" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Fees </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/FeeCollection" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Collect Fee  </span></a
+                >
+              </li>
+             
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-book"></i
+              ><span class="hide-menu">School Results</span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/Average" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Average Grades</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/DivisionGrade" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Division Grades </span></a
+                >
+              </li>
+            
+              <li class="sidebar-item">
+                <a href="/GPAGrade" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon-cool"></i
+                  ><span class="hide-menu"> GPA Grades </span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a href="/Examination" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Examinations  </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Result" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Results </span></a
+                >
+              </li>
+            
+             
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link has-arrow waves-effect waves-dark"
+              href="javascript:void(0)"
+              aria-expanded="false"
+              ><i class="mdi mdi-hotel"></i
+              ><span class="hide-menu">CMS </span></a
+            >
+          
+
+            <ul aria-expanded="false" class="collapse first-level">
+             
+              <li class="sidebar-item">
+                <a href="/FrontPage" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu">  Front Content </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/AboutSchool" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu">  About School </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Content" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> Main Contents </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/Gallery" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu">  Gallery </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="/News" class="sidebar-link"
+                  ><i class="mdi mdi-emoticon"></i
+                  ><span class="hide-menu"> News</span></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>

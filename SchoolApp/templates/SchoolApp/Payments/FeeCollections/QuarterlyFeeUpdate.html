@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Quarterly Fee </h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit Quarterly Fee 
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+   
+    <div class="container-fluid">
+      <div class="row">
+       <div class="col-md-12">
+         <div class="card">
+           <form method="POST" class="form-horizontal">
+             {% csrf_token %}
+             <div class="border-top">
+               <div class="card-body">
+                 <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                 <a class="btn btn-danger" href="{% url 'deleteQuarterly' Quarterly_id %}" >Delete</a>
+                 <a href="{% url 'updateFeeCollection' FeeCollection_id %}" type="submit" class="btn btn-info">Cancel</a>
+                 
+                </div>
+           </div>
+           <div class="card">
+               <div class="card-body">
+               
+                <div class="row">
+                  <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                    <label class="required">Fee</label>
+                    {% render_field ItemForm.Fee placeholder=ItemForm.Fee.label class+="form-control"  %}
+                    
+                  </div>
+                  <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                    <label class="required">Discount</label>
+                    {% render_field ItemForm.Discount placeholder=ItemForm.Discount.label class+="form-control"  %}
+                    
+                  </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <label class="required">Quarter One</label>
+                      {% render_field ItemForm.QuarterOne placeholder=ItemForm.QuarterOne.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <label class="required">Quarter Two</label>
+                      {% render_field ItemForm.QuarterTwo placeholder=ItemForm.QuarterTwo.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <label class="required">Quarter Three</label>
+                      {% render_field ItemForm.QuarterThree placeholder=ItemForm.QuarterThree.label class+="form-control"  %}
+                      
+                    </div>
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <label class="required">Quarter Four</label>
+                      {% render_field ItemForm.QuarterFour placeholder=ItemForm.QuarterFour.label class+="form-control"  %}
+                    </div>
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <div class="row">
+                      <label  class="col-sm-3 text-right control-label col-form-label">Total Amount</label>
+                      <div class="col-sm-9 mt-2">
+                        {{ ItemForm.Amount.value}} 
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+                      <div class="row">
+                      <label  class="col-sm-3 text-right control-label col-form-label">Pending Amount</label>
+                      <div class="col-sm-9 mt-2">
+                        {{ ItemForm.PendingAmount.value}} 
+                      </div>
+                    </div>
+                  </div>
+               </div>
+          
+          </div>
+             </div>
+           </form>
+         </div>
+ 
+      </div>
+     </div>
+     </div>
+    
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

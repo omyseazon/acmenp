@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Examination</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit Examination
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                <a href="{% url 'Examination' %}" type="submit" class="btn btn-danger">Cancel</a>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+              
+               {% comment %} <h4 class="card-title">Edit Examination</h4> {% endcomment %}
+               <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">Name</label>
+                <div class="col-sm-9">
+                  {% render_field form.Name placeholder=form.Name.label class+="form-control"  %}
+                </div>
+            </div>
+           
+            <div class="form-group row">
+              <label  class="col-sm-3 text-right control-label col-form-label">Term</label>
+              <div class="col-sm-9">
+                {% render_field form.Semester placeholder=form.Semester.label class+="form-control"  %}
+              </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-3 text-right control-label col-form-label">Start Date</label>
+            <div class="col-sm-9">
+              {% render_field form.StartDate placeholder=form.StartDate.label class+="form-control"  %}
+            </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">End Date</label>
+          <div class="col-sm-9">
+            {% render_field form.EndDate placeholder=form.EndDate.label class+="form-control"  %}
+          </div>
+      </div>
+            
+
+              </div>
+            </div>
+          </form>
+        </div>
+
+     </div>
+    </div>
+    </div>
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

@@ -1,0 +1,511 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Collect Fee</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Collect Fee
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+      <div class="row ">
+        <div class="col-md-12 ">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" name="save_close" class="btn btn-primary">Save and Close</button>
+                <button type="submit" name="save_FeeCollection" class="btn btn-info">Save and Continue</button>
+                
+                {% comment %} <a href="{% url 'FeeCollection' %}" type="submit" class="btn btn-danger">Cancel</a> {% endcomment %}
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+                <div class="row mt-2 mb-3">
+                  <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                    <label class="required">Student</label>
+                    {% render_field form.Student placeholder=form.Student.label class+="form-control"  %}
+                  </div>
+                  <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                    <label class="required">Duration</label>
+                    {% render_field form.PaymentDuration placeholder=form.PaymentDuration.label class+="form-control" id+="seeAnotherField" %}
+
+                  </div>
+               
+                
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Payment Date</label>
+                  {% render_field form.PaymentDate placeholder=form.PaymentDate.label class+="form-control"  %}
+
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Academic Year</label>
+                  {% render_field form.AcademicYear placeholder=form.AcademicYear.label class+="form-control"  %}
+
+                </div>
+                <hr>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Total Amount :</label>
+                  {{form.Amount.value}}
+                 
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Pending Amount :</label>
+                  {{form.PendingAmount.value}}
+                 
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Receipt Number :</label>
+                  {{form.ReceiptNumber.value}}
+                 
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Status :</label>
+                  {% if form.Status.value == 'Cleared' %}
+                              <span class="text-success">{{ form.Status.value }}</span>
+                          {% else %}
+                              <span class="text-danger">{{ form.Status.value }}</span>
+                          {% endif %}
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+           
+          </div>
+          </form>
+        </div>
+        <div class="card ">
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Reg no</th>
+                          <th>Programme</th>
+                          <th>Class</th>
+                          <th>Stream</th>
+                          {% if Student.Hostel != None %}
+                          <th>Hostel</th>
+                          {% endif %}
+                          {% if Student.Transport != None %}
+                          <th>Transport</th>
+                          {% endif %}
+                          
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ Student.RegisteredStudent.RegistrationNumber }}</td>
+                      <td>{{ Student.Programme.Name }}</td>
+                      <td>{{ Student.ClassName }}</td>
+                      <td>{{ Student.Section }}</td>
+                      {% if Student.Hostel != None %}
+                            <td>{{ Student.Hostel }}</td>
+                      {% endif %}
+
+                      {% if Student.Transport != None %}
+                          <td>{{ Student.Transport }}</td>
+                      {% endif %}
+                      <td>{{ Student.Status }}</td>
+                      
+                    </tr>
+                   
+                   
+                     </tbody>
+                 
+              </table>
+          </div>
+        </div>
+        {% if form.PaymentDuration.value == 'Full' %}
+        <div class="card ">
+          <div class="card-body">
+            <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mb-2">Add Items</button>
+
+            <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Fee</th>
+                          <th>Amount</th>
+                          <th>Pending Amount</th>
+                          <th>Discount</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for Record in FeeCollectionDetails %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ Record.Fee }}</td>
+                      <td>{{ Record.Amount }}</td>
+                      <td>{{ Record.PendingAmount }}</td>
+                      <td>{{ Record.FeeDiscount }}</td>
+
+                     
+                      <td>
+                        <a class="btn btn-primary" href="{% url 'updateFeeCollectionDetail' Record.id %}"
+                          >Edit</a
+                        >
+                        <a class="btn btn-danger" href="{% url 'deleteFeeCollectionDetail' Record.id %}" 
+                          >Delete</a
+                        >
+                      </td>
+                    </tr>
+                    {% endfor %}
+                   
+                             </tbody>
+                 
+              </table>
+          </div>
+        </div>
+        
+        {% endif %}
+          
+        {% if form.PaymentDuration.value == 'Monthly' %}
+        <div class="card ">
+          <div class="card-body">
+            <button data-toggle="modal" data-target="#MonthlyModal" class="btn btn-primary mb-2">Add Monthly Fees</button>
+
+            <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Fee</th>
+                          <th>January</th>
+                          <th>February</th>
+                          <th>March</th>
+                          <th>April</th>
+                          <th>May</th>
+                          <th>June</th>
+                          <th>July</th>
+                          <th>August</th>
+                          <th>September</th>
+                          <th>October</th>
+                          <th>November</th>
+                          <th>December</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for Record in MonthlyFees %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ Record.Fee }}</td>
+                      <td>{{ Record.January }}</td>
+                      <td>{{ Record.February }}</td>
+                      <td>{{ Record.March }}</td>
+                      <td>{{ Record.April }}</td>
+                      <td>{{ Record.May }}</td>
+                      <td>{{ Record.June }}</td>
+                      <td>{{ Record.July }}</td>
+                       <td>{{ Record.August }}</td>
+                      <td>{{ Record.September }}</td>
+                      <td>{{ Record.October }}</td>
+                      <td>{{ Record.November }}</td>
+                      <td>{{ Record.December }}</td>
+                      <td>
+                        <a class="btn btn-primary" href="{% url 'updateMonthly' Record.id %}"
+                          >Edit</a
+                        >
+                        {% comment %} <a class="btn btn-danger" href="{% url 'deleteFeeCollectionDetail' Record.id %}" 
+                          >Delete</a
+                        > {% endcomment %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                   
+                             </tbody>
+                 
+              </table>
+          </div>
+        </div>
+        
+        {% endif %}
+
+        {% if form.PaymentDuration.value == 'Quarterly' %}
+        <div class="card ">
+          <div class="card-body">
+            <button data-toggle="modal" data-target="#QuarterlyModal" class="btn btn-primary mb-2">Add Quarterly Fees</button>
+
+            <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Fee</th>
+                          <th>Quarter One</th>
+                          <th>Quarter Two</th>
+                          <th>Quarter Three</th>
+                          <th>Quarter Four</th>
+                          
+                          <th>Discount</th>
+                          
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for Record in QuarterlyFees %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ Record.Fee }}</td>
+                      <td>{{ Record.QuarterOne }}</td>
+                      <td>{{ Record.QuarterTwo }}</td>
+                      <td>{{ Record.QuarterThree }}</td>
+                      <td>{{ Record.QuarterFour }}</td>
+                     
+                      <td>{{ Record.Discount }}</td>
+                       
+                      <td>
+                        <a class="btn btn-primary" href="{% url 'updateQuarterly' Record.id %}"
+                          >Edit</a
+                        >
+                        {% comment %} <a class="btn btn-danger" href="{% url 'deleteFeeCollectionDetail' Record.id %}" 
+                          >Delete</a
+                        > {% endcomment %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                   
+                             </tbody>
+                 
+              </table>
+          </div>
+        </div>
+        
+        {% endif %}
+
+  
+        </div>
+      </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Fee </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" class="form-horizontal">
+        {% csrf_token %}
+      <div class="modal-body">
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">Fee</label>
+          <div class="col-sm-9">
+            {% render_field FeeCollectionDetailForm.Fee placeholder=FeeCollectionDetailForm.Fee.label class+="form-control"  %}
+          </div>
+      </div>
+      <div class="form-group row">
+        <label  class="col-sm-3 text-right control-label col-form-label">Amount</label>
+        <div class="col-sm-9">
+          {% render_field FeeCollectionDetailForm.Amount placeholder=FeeCollectionDetailForm.Amount.label class+="form-control" id+="seeAnotherField" %}
+        </div>
+    </div>
+
+ <div class="form-group row">
+    <label  class="col-sm-3 text-right control-label col-form-label">Discount (option)</label>
+    <div class="col-sm-9">
+      {% render_field FeeCollectionDetailForm.Discount placeholder=FeeCollectionDetailForm.Discount.label class+="form-control"  %}
+    </div>
+</div> 
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="save_item" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Monthly-->
+<div class="modal fade" id="MonthlyModal" tabindex="-1" role="dialog" aria-labelledby="MonthlyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="MonthlyModalLabel">Add Monthly Fee </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" class="form-horizontal">
+        {% csrf_token %}
+      <div class="modal-body">
+        <div class="row">
+        <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+          <label class="required">Fee</label>
+          {% render_field monthlyForm.Fee placeholder=monthlyForm.Fee.label class+="form-control"  %}
+          
+        </div>
+        <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+          <label class="required">Discount</label>
+          {% render_field monthlyForm.Discount placeholder=monthlyForm.Discount.label class+="form-control"  %}
+          
+        </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">January</label>
+            {% render_field monthlyForm.January placeholder=monthlyForm.January.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">February</label>
+            {% render_field monthlyForm.February placeholder=monthlyForm.February.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">March</label>
+            {% render_field monthlyForm.March placeholder=monthlyForm.March.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">April</label>
+            {% render_field monthlyForm.April placeholder=monthlyForm.April.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">May</label>
+            {% render_field monthlyForm.May placeholder=monthlyForm.May.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">June</label>
+            {% render_field monthlyForm.June placeholder=monthlyForm.June.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">July</label>
+            {% render_field monthlyForm.July placeholder=monthlyForm.July.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">August</label>
+            {% render_field monthlyForm.August placeholder=monthlyForm.August.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">September</label>
+            {% render_field monthlyForm.September placeholder=monthlyForm.September.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">October</label>
+            {% render_field monthlyForm.October placeholder=monthlyForm.October.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">November</label>
+            {% render_field monthlyForm.November placeholder=monthlyForm.November.label class+="form-control"  %}
+          </div>
+          <div class="col-xs-4 mt-2 col-sm-4 col-lg-4 col-md-4">
+            <label class="required">December</label>
+            {% render_field monthlyForm.December placeholder=monthlyForm.December.label class+="form-control"  %}
+          </div>
+     </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="save_item" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Quarterly-->
+<div class="modal fade" id="QuarterlyModal" tabindex="-1" role="dialog" aria-labelledby="QuarterlyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="QuarterlyModalLabel">Add Quarterly Fee </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" class="form-horizontal">
+        {% csrf_token %}
+      <div class="modal-body">
+        <div class="row">
+        <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+          <label class="required">Fee</label>
+          {% render_field QuarterlyForm.Fee placeholder=QuarterlyForm.Fee.label class+="form-control"  %}
+          
+        </div>
+        <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+          <label class="required">Discount</label>
+          {% render_field QuarterlyForm.Discount placeholder=QuarterlyForm.Discount.label class+="form-control"  %}
+          
+        </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+            <label class="required">Quarter One</label>
+            {% render_field QuarterlyForm.QuarterOne placeholder=QuarterlyForm.QuarterOne.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+            <label class="required">Quarter Two</label>
+            {% render_field QuarterlyForm.QuarterTwo placeholder=QuarterlyForm.QuarterTwo.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+            <label class="required">Quarter Three</label>
+            {% render_field QuarterlyForm.QuarterThree placeholder=QuarterlyForm.QuarterThree.label class+="form-control"  %}
+            
+          </div>
+          <div class="col-xs-6 mt-2 col-sm-6 col-lg-6 col-md-6">
+            <label class="required">Quarter Four</label>
+            {% render_field QuarterlyForm.QuarterFour placeholder=QuarterlyForm.QuarterFour.label class+="form-control"  %}
+          </div>
+         
+     </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="save_item" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    

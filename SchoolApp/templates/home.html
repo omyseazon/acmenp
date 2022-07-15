@@ -1,0 +1,377 @@
+{% extends 'front_base.html' %}
+{% load static %}
+
+{% block content %}
+<main id="main" style="padding-top: 20px">
+
+  {% include 'SchoolApp/front_includes/hero.html' %}
+<!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us section-bg"  style="margin-left:7%; margin-right:7%; margin-top:3%">
+  <div class="container-fluid" data-aos="fade-up">
+
+    <div class="row">
+{% for record in AboutSchools %}
+{% if forloop.counter0 == 0  %}
+<div class="col-lg-5 align-items-stretch video-box" style="background-image: url({{record.Photo.url}});" data-aos="zoom-in" data-aos-delay="100">
+</div>
+
+<div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+  <div class="content">
+    <h3>{{record.Title}}</h3>
+   
+  </div>
+
+  <div class="accordion-list">
+    <ul>
+      <li>
+        <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"> <h3>{{record.Subtitle}}</h3><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+        <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+          <p>
+            {{record.Description1}}          </p>
+        </div>
+      </li>
+
+      
+     
+
+    </ul>
+  </div>
+
+</div>
+{% endif %}
+{% endfor %}
+   
+
+    </div>
+
+  </div>
+</section><!-- End Why Us Section -->
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services mt-3" >
+  <div class="container" data-aos="fade-up">
+
+    {% comment %} <div class="section-title">
+      <h2>Services</h2>
+      <p>Check our Services</p>
+    </div> {% endcomment %}
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-boxes"></i></div>
+          <h4><a href="">Innovation</a></h4>
+          <p>Most things our children love is our innovation programs, creating their things they love and fun</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-mortarboard"></i></div>
+          <h4><a href="">Future education</a></h4>
+          <p>We believe technology and artification intellegence are the future in education, we are upto date in promoting them</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"><i class="bi bi-people"></i></div>
+          <h4><a href="">Friendship, happy, curious learners</a></h4>
+          <p>We build confidence, encourage children to reach high goals than expected traditionally</p>
+        </div>
+      </div>
+
+      
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="row content"> 
+        <div class="col-sm-12 " style="margin-bottom: 40px">
+          <div class="section-title">
+            <p>Why are we different from others</p>
+          </div>
+        <p>ANPS have the facility to make teaching and learning easy, we use technology for teaching, we encourage student in innovations and creativity, friendly teachers with good experiance. We have good way of communication with parents. We have portal for parents to see their children performance and other related school matters.
+        </p>
+        </div>
+        <div class="col-sm-6 ">
+          <div class="section-title">
+            <h2>Curriculum</h2>
+            <p>Curriculum</p>
+          </div>
+    
+          <div class="row content">
+              <p>
+                We teaching using ministry of education Curriculum, however we teaching three languages English, Swahili and Arabic.
+              </p>
+              
+            
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="section-title">
+            <h2>Admission</h2>
+            <p>Admission</p>
+          </div>
+    
+          <div class="row content">
+              <p>
+                We accept students through our the year, we prepare a child to be in the same position with others who joined the school before them.              </p>
+              
+            
+          </div>
+        </div>
+         </div>
+      
+
+    </div>
+  </section><!-- End About Section -->
+
+
+  <!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us section-bg" style="margin-left:7%; margin-right:7%">
+  <div class="container-fluid" data-aos="fade-up">
+
+    <div class="row">
+{% for record in AboutSchools %}
+{% if forloop.counter0 == 1  %}
+<div class="col-lg-5 align-items-stretch video-box" style="background-image: url({{record.Photo.url}});" data-aos="zoom-in" data-aos-delay="100">
+</div>
+
+<div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+  <div class="content">
+    <h3>{{record.Title}}</h3>
+   
+  </div>
+
+  <div class="accordion-list">
+    <ul>
+      <li>
+        <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"> <h3>{{record.Subtitle}}</h3><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+        <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+          <p>
+            {{record.Description1}}          </p>
+        </div>
+      </li>
+
+      
+     
+
+    </ul>
+  </div>
+
+</div>
+{% endif %}
+{% endfor %}
+   
+
+    </div>
+
+  </div>
+</section><!-- End Why Us Section -->
+
+ <!-- ======= Portfolio Section ======= -->
+ <section id="portfolio" class="portfolio">
+  <div class="container">
+
+    <div class="section-title text-left">
+      <p>Gallery</p>
+     
+    </div>
+    <p><a class="text-dark" href="/publicGallery">View more</a></p>
+    <div class="row portfolio-container" data-aos="fade-up">
+      {% for Gallery in Galleries %}
+     
+
+      <div class="col-lg-4 col-md-6 portfolio-item ">
+       <img src="{{Gallery.Photo.url}}" class="img-fluid" alt="">
+
+     
+
+           <a href="{{Gallery.Photo.url}}" class="portfolio-info portfolio-lightbox preview-link" data-gallery="portfolioGallery"><h4>Click to view full image </h4></a>
+           
+      
+     </div>
+  {% endfor %}
+      
+      {% comment %} <div class="col-lg-4 col-md-6 portfolio-item ">
+        <img src="{% static 'front_assets/img/portfolio/tea4.jpeg' %}" class="img-fluid" alt="">
+        <a class="portfolio-info portfolio-lightbox preview-link" data-gallery="portfolioGallery" href="{% static 'front_assets/img/portfolio/tea4.jpeg' %}">
+          <h4>Click to view full image </h4>
+        </a>
+      </div> {% endcomment %}
+     
+    
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
+
+
+  {% comment %} <!-- ======= Team Section ======= -->
+  <section id="team" class="team section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Team</h2>
+        <p>Check our Team</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="member" data-aos="zoom-in" data-aos-delay="100">
+            <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+            <div class="member-info">
+              <div class="member-info-content">
+                <h4>Walter White</h4>
+                <span>Chief Executive Officer</span>
+              </div>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.1s">
+          <div class="member" data-aos="zoom-in" data-aos-delay="200">
+            <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+            <div class="member-info">
+              <div class="member-info-content">
+                <h4>Sarah Jhonson</h4>
+                <span>Product Manager</span>
+              </div>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.2s">
+          <div class="member" data-aos="zoom-in" data-aos-delay="300">
+            <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+            <div class="member-info">
+              <div class="member-info-content">
+                <h4>William Anderson</h4>
+                <span>CTO</span>
+              </div>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.3s">
+          <div class="member" data-aos="zoom-in" data-aos-delay="400">
+            <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+            <div class="member-info">
+              <div class="member-info-content">
+                <h4>Amanda Jepson</h4>
+                <span>Accountant</span>
+              </div>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Team Section --> {% endcomment %}
+
+ 
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Contact Us</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-6">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="info-box">
+                <i class="bx bx-map"></i>
+                <h3>Our Address</h3>
+                <p>Fuoni Mtundani, twenty minutes from Zanzibar Stone Town</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4">
+                <i class="bx bx-envelope"></i>
+                <h3>Email Us</h3>
+                <p>info@acmenp.com</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4">
+                <i class="bx bx-phone-call"></i>
+                <h3>Call Us</h3>
+                <p>+255773910810</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+{% endblock content %}

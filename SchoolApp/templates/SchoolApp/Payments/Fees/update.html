@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Update Fee</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Edit  Fee
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                <a href="{% url 'Fee' %}" type="submit" class="btn btn-danger">Cancel</a>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+              
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">Category</label>
+                  <div class="col-sm-9">
+                    {% render_field form.FeeType placeholder=form.FeeType.label class+="form-control"  %}
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">Class</label>
+                <div class="col-sm-9">
+                  {% render_field form.Course placeholder=form.Course.label class+="form-control" id+="seeAnotherField" %}
+                </div>
+            </div>
+            <div class="form-group row">
+              <label  class="col-sm-3 text-right control-label col-form-label">Academic Year</label>
+              <div class="col-sm-9">
+                {% render_field form.AcademicYear placeholder=form.AcademicYear.label class+="form-control"  %}
+              </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-3 text-right control-label col-form-label">Amount</label>
+            <div class="col-sm-9">
+              {% render_field form.Amount placeholder=form.Amount.label class+="form-control" id+="seeAnotherField" %}
+            </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">Description</label>
+          <div class="col-sm-9">
+            {% render_field form.Description placeholder=form.Description.label class+="form-control" id+="seeAnotherField" %}
+          </div>
+      </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+
+     </div>
+    </div>
+    </div>
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    
+
+

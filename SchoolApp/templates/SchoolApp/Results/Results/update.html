@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Result</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Result
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+      <div class="row ">
+        <div class="col-md-12 ">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" name="save_close" class="btn btn-primary">Save and Close</button>
+                <button type="submit" name="save_Result" class="btn btn-info">Save and Continue</button>
+                
+                {% comment %} <a href="{% url 'Result' %}" type="submit" class="btn btn-danger">Cancel</a> {% endcomment %}
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-body">
+                <div class="row mt-2 mb-3">
+                  <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                    <label class="required">Student</label>
+                    {% render_field form.Student placeholder=form.Student.label class+="form-control"  %}
+                  </div>
+                  <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                    <label class="required">Examination</label>
+                    {% render_field form.Examination placeholder=form.Examination.label class+="form-control" id+="seeAnotherField" %}
+
+                  </div>
+               
+                
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">ResultMode</label>
+                  {% render_field form.ResultMode placeholder=form.ResultMode.label class+="form-control"  %}
+
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Academic Year</label>
+                  {% render_field form.AcademicYear placeholder=form.AcademicYear.label class+="form-control"  %}
+
+                </div>
+                <div class="col-xs-3 mt-2 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Status :</label>
+                  {% render_field form.Status placeholder=form.Status.label class+="form-control"  %}
+                </div>
+                
+                {% if form.ResultMode.value == 'Average' %}
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Average  :</label>
+                  {{form.Average.value}}
+                </div>
+
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Average Result :</label>
+                  {{form.AverageResult.value}}
+                 
+                </div>
+                {% endif %}
+
+                {% if form.ResultMode.value == 'GPA' %}
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">GPA  :</label>
+                  {{form.GPA.value}}
+                </div>
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Point  :</label>
+                  {{form.Point.value}}
+                </div>
+                {% endif %}
+
+                {% if form.ResultMode.value == 'Division' %}
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Division  :</label>
+                  {{form.Division.value}}
+                </div>
+                <div class="col-xs-3 p-5 col-sm-3 col-lg-3 col-md-3">
+                  <label class="required">Point  :</label>
+                  {{form.Point.value}}
+                </div>
+                {% endif %}
+             
+              </div>
+
+
+            </div>
+          </div>
+           
+          </div>
+          </form>
+        </div>
+        <div class="card ">
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table id="zero_config" class="table table-striped table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Reg no</th>
+                          <th>Programme</th>
+                          <th>Class</th>
+                          <th>Stream</th>
+                          {% if Student.Hostel != None %}
+                          <th>Hostel</th>
+                          {% endif %}
+                          {% if Student.Transport != None %}
+                          <th>Transport</th>
+                          {% endif %}
+                          
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ Student.RegisteredStudent.RegistrationNumber }}</td>
+                      <td>{{ Student.Programme.Name }}</td>
+                      <td>{{ Student.ClassName }}</td>
+                      <td>{{ Student.Section }}</td>
+                      {% if Student.Hostel != None %}
+                            <td>{{ Student.Hostel }}</td>
+                      {% endif %}
+
+                      {% if Student.Transport != None %}
+                          <td>{{ Student.Transport }}</td>
+                      {% endif %}
+                      <td>{{ Student.Status }}</td>
+                      
+                    </tr>
+                   
+                   
+                     </tbody>
+                 
+              </table>
+          </div>
+        </div>
+        <form method="POST" class="form-horizontal">
+          {% csrf_token %}
+           <div class="card">
+            <div class="card-body">
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" name="save_marks" class="btn btn-info">Save Marks</button>
+                  <a href="{% url 'Result' %}" type="submit" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            {% if form.ResultMode.value == 'Average' %}
+            <div class='row'>
+              {% if ResultSubjects  %}
+              {% for subject in ResultSubjects  %}
+              <div class="col-xs-4 mt-3 col-sm-4 col-lg-4 col-md-4">
+                <label class="required">{{subject.Subject}} ( {{subject.Grade}} )</label>
+                <input type="number" min="0" max="50" name="{{subject.Subject}}" value="{{subject.Marks}}" placeholder="Enter marks" class="form-control"  />
+              </div>
+              {% endfor %}
+              {% else %}
+              {% for subject in Subjects  %}
+              <div class="col-xs-4 mt-3 col-sm-4 col-lg-4 col-md-4">
+                <label class="required">{{subject.Name}} ( {{subject.Grade}} )</label>
+                <input type="number" min="0" max="50" name="{{subject.Name}}" placeholder="Enter marks" class="form-control"  />
+              </div>
+          {% endfor %}
+              {% endif %}
+          </div>
+
+            {% else %}
+            <div class='row'>
+              {% if ResultSubjects %}
+              {% for subject in ResultSubjects  %}
+              <div class="col-xs-4 mt-3 col-sm-4 col-lg-4 col-md-4">
+                <label class="required">{{subject.Subject}} ( {{subject.Grade}} )</label>
+                <input type="number" min="0" max="100" name="{{subject.Subject}}" value="{{subject.Marks}}" placeholder="Enter marks" class="form-control"  />
+              </div>
+          {% endfor %}
+              {% else %}
+              {% for subject in Subjects  %}
+              <div class="col-xs-4 mt-3 col-sm-4 col-lg-4 col-md-4">
+                <label class="required">{{subject.Name}} ( {{subject.Grade}} )</label>
+                <input type="number" min="0" max="100" name="{{subject.Name}}" placeholder="Enter marks" class="form-control"  />
+              </div>
+          {% endfor %}
+              {% endif %}
+            
+          </div>
+            {% endif %}
+              
+           </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+{% endblock content %}
+    
+    

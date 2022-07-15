@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title"> Enroll Student</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                 Create Enrollment
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+     <div class="row">
+      <div class="col-md-6">
+        
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" name="save_and_add" class="btn btn-info">Enroll</button>
+                  <a href="{% url 'StudentEnrollment' %}" type="submit" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                 
+                    {% comment %} <h4 class="card-title">Edit StudentEnrollment</h4> {% endcomment %}
+                    <div class="form-group row">
+                        <label  class="col-sm-3 text-right control-label col-form-label">Student</label>
+                        <div class="col-sm-9">
+                          {% render_field form.RegisteredStudent placeholder=form.RegisteredStudent.label class+="form-control"  %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label  class="col-sm-3 text-right control-label col-form-label">School Type</label>
+                      <div class="col-sm-9">
+                        {% render_field form.SchoolType placeholder=form.SchoolType.label class+="form-control" id+="seeAnotherField" %}
+                      </div>
+                  </div>
+
+                  {% comment %} <div class="form-group row">
+                    <label for="seeAnotherField"  class="col-sm-3 text-right control-label col-form-label">School Type</label>
+                    <div class="col-sm-9">
+                    <select class="form-control" id="seeAnotherField" >
+                      <option value="Day">_ _ _ _ _ </option>
+                          <option value="Day">Day</option>
+                          <option value="Boarding">Boarding!</option>
+                    </select>
+                  </div>
+                </div> {% endcomment %}
+                  
+                  
+                  <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">Programme</label>
+                    <div class="col-sm-9">
+                      {% render_field form.Programme placeholder=form.Programme.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">Class</label>
+                  <div class="col-sm-9">
+                    {% render_field form.ClassName placeholder=form.ClassName.label class+="form-control"  %}
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-3 text-right control-label col-form-label">Stream</label>
+                <div class="col-sm-9">
+                  {% render_field form.Section placeholder=form.Section.label class+="form-control"  %}
+                </div>
+            </div>
+           
+        <div class="form-group row">
+          <label  class="col-sm-3 text-right control-label col-form-label">Academic Year</label>
+          <div class="col-sm-9">
+            {% render_field form.AcademicYear placeholder=form.AcademicYear.label class+="form-control"  %}
+          </div>
+      </div>
+      <div class="form-group row">
+        <label  class="col-sm-3 text-right control-label col-form-label">Status</label>
+        <div class="col-sm-9">
+          {% render_field form.Status placeholder=form.Status.label class+="form-control"  %}
+        </div>
+    </div>
+
+<hr>
+<h4 class="card-title">Optional</h4> 
+    <div class="form-group row" >
+      <label  class="col-sm-3 text-right control-label col-form-label">Hostel</label>
+      <div class="col-sm-9">
+        {% render_field form.Hostel placeholder=form.Hostel.label class+="form-control"  %}
+      </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-3 text-right control-label col-form-label">Transport</label>
+    <div class="col-sm-9">
+      {% render_field form.Transport placeholder=form.Transport.label class+="form-control"  %}
+    </div>
+</div>
+                </div>
+              </div>
+            </form>
+        
+
+     </div>
+    </div>
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+ 
+{% endblock content %}
+    
+ 
+
+
