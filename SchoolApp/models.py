@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from email.policy import default
 from faulthandler import disable
 import imp
