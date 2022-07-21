@@ -1,15 +1,9 @@
 from email.policy import default
 from faulthandler import disable
-import imp
 from django.db import models
-import barcode
-from barcode.writer import ImageWriter
-from io import BytesIO
 from django.core.files import File
 from django.forms import DecimalField
-import pdfkit
 from datetime import datetime, timedelta
-import code128
 from datetime import date
 from django.utils.timezone import now
 
