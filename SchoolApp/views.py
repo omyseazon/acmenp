@@ -37,6 +37,30 @@ def publicGallery(request):
     Galleries = Gallery.objects.all()
     return render(request, 'SchoolApp/public/publicGallery.html',{'Galleries':Galleries}) 
 
+def publicAdmission(request):
+    form = StudentAdmissionForm(request.POST  or None,request.FILES or None)
+    Now = date.today()
+    if request.method == 'POST':
+
+
+        if form.is_valid():
+            newform = form.save(commit=False)
+            newform.AdmissionNumber = f'ADM-{Now.year}{Now.day}{Now.month}/{Now.year}'
+            newform.AdmissionDate = Now
+            newform.PhotoURL = f"http://127.0.0.1:8000/{newform.Photo.url}"  
+            newform.BirthCertificateUrl = f"http://127.0.0.1:8000/{newform.BirthCertificate.url}"  
+            newform.ResultCertificateUrl = f"http://127.0.0.1:8000/{newform.ResultCertificate.url}"  
+           
+            # if newform.AdmissionStatus == 'Approved':
+
+
+            newform.save()
+            messages.success(request, "Form Submitted succesful" )
+            return redirect('/createStudentAdmission')
+        else:
+            messages.error(request, "Form Error")
+    return render(request, 'SchoolApp/public/publicAdmission.html',{'form':form}) 
+
 #Programme view //////////////////////////////////////////////////////////////////////////
 @login_required    
 def ProgrammeView(request):

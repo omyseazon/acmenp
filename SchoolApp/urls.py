@@ -273,6 +273,7 @@ urlpatterns = [
       path('', views.home, name='home'),
       path('accounts/', include('django.contrib.auth.urls')),
       path('publicGallery', views.publicGallery, name='publicGallery'),
+      path('publicAdmission', views.publicAdmission, name='publicGallery'),
     # path('update/<str:pk>/', views.updatingTask, name='update'),
     # path('delete/<str:pk>/', views.deleteTask, name='delete'),
 ]
