@@ -55,7 +55,7 @@
       {% include 'SchoolApp/includes/sidebar.html' %}
       {% block content %}{% endblock content %}
     </div>
-
+    
     {% block script %}
     <script src="{% static 'assets/libs/jquery/dist/jquery.min.js'%}"></script>
     <!-- Bootstrap tether Core JavaScript -->
@@ -87,45 +87,60 @@
     <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
     <script >
       $("#seeAnotherField").change(function() {
-        if ($(this).val() == "Uniform") {
-          $('#UniformField').show();
+        if ($(this).val() == "Father") {
+          //$('#UniformField').show();
           
-          $('#AccesoriesField').hide();
-          $('#OthersField').hide();
-          $('#FoodField').hide();
+          $('#Father').hide();
+          $('#Mother').show();
         }
-        else if ($(this).val() == "Food Accesories") {
-          $('#AccesoriesField').show();
+        else if ($(this).val() == "Mother") {
+         // $('#Mother').show();
          // $('#ProductName').attr('required', 'This field is required.');
-          $('#UniformField').hide();
-          $('#OthersField').hide();
-          $('#FoodField').hide();
+          $('#Mother').hide();
+          $('#Father').show();
           
         }
-        else if ($(this).val() == "Food") {
-          $('#FoodField').show();
-         
-          $('#UniformField').hide();
-          $('#AccesoriesField').hide();
-          $('#OthersField').hide();
-          
-        } 
-        else if ($(this).val() == "Others") {
-          $('#OthersField').show();
-          $('#Category').attr('required', 'This field is required.');
-          $('#UniformField').hide();
-          $('#FoodField').hide();
-          $('#AccesoriesField').hide();
-        }  
+       
         else {
-          $('#AccesoriesField').hide();
-          $('#UniformField').hide();
-          $('#OthersField').hide();
-          $('#FoodField').hide();
+          $('#Mother').show();
+          $('#Father').show();
+         
         }
       });
       $("#seeAnotherField").trigger("change");
     
+      $("#Programme").change(function() {
+        if ($(this).val() != "") {
+          //$('#UniformField').show();
+          Programme = $(this).val();
+          $('#ClassLevel').show();
+
+        
+        }
+        else {
+          $('#ClassLevel').hide();
+         
+        }
+      });
+      $("#Programme").trigger("change");
+   
+      $("#Category").change(function() {
+        if ($(this).val() != "") {
+          Category = $(this).val();
+          $('#SizeField').attr('required', 'Size is required.');
+          $('#ColorField').attr('required', 'Color is required.');
+          $('#AgeOrClass').show();
+          $('#Color').show();
+          $('#Size').show();
+        
+        }
+        else {
+          $('#AgeOrClass').hide();
+          $('#Color').hide();
+          $('#Size').hide();
+        }
+      });
+      $("#Category").trigger("change");
    
     </script>   
     {% block extra_script %}

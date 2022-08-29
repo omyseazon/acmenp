@@ -33,7 +33,15 @@
     <div class="container-fluid">
      <div class="row">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card"> {% if form.errors %}
+          {% for key, value in form.errors.items %} 
+              <div class="row testrow">
+                  <div class="alert alert-error text-danger">
+                      {{ value | striptags }}
+                  </div>
+              </div>
+          {% endfor %}
+      {% endif %}
             <form method="POST" class="form-horizontal">
               {% csrf_token %}
                 <div class="card-body">
@@ -82,13 +90,14 @@
     <div class="form-group row">
       <label  class="col-sm-3 text-right control-label col-form-label">Current Capacity</label>
       <div class="col-sm-9">
-        {% render_field form.CurrentCapacity placeholder=form.CurrentCapacity.label class+="form-control"  %}
+        <input type="text" class="form-control" value="{{form.CurrentCapacity.value}}" readonly>
       </div>
   </div>
   <div class="form-group row">
     <label  class="col-sm-3 text-right control-label col-form-label">Available Capacity</label>
     <div class="col-sm-9">
-      {% render_field form.AvailableCapacity placeholder=form.AvailableCapacity.label class+="form-control"  %}
+      <input type="text" class="form-control" value="{{form.AvailableCapacity.value}}" readonly>
+
     </div>
 </div>
                 </div>

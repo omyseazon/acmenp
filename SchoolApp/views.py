@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from .filters import *
 from .forms import *
+from random import randint
 from datetime import date
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -74,16 +75,17 @@ def ProgrammeView(request):
         Programmes = paginator.page(1)
     except EmptyPage:
         Programmes = paginator.page(paginator.num_pages)
-    return render(request, 'SchoolApp/accademics/Programmes/list.html', {'Programmes': Programmes})  
+    return render(request, 'SchoolApp/Academics/Programmes/list.html', {'Programmes': Programmes})  
 
 @login_required    
 def createProgramme(request):
     form = ProgrammeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
             form.save()
             return redirect('/createProgramme')
-    return render(request, 'SchoolApp/accademics/Programmes/create.html', {'form': form})
+    return render(request, 'SchoolApp/Academics/Programmes/create.html', {'form': form})
 
 @login_required    
 def editProgramme(request, pk):
@@ -93,7 +95,7 @@ def editProgramme(request, pk):
     if editForm.is_valid():
         editForm.save()
         return redirect('/Programme')
-    return render(request, 'SchoolApp/accademics/Programmes/update.html', {'form': editForm})
+    return render(request, 'SchoolApp/Academics/Programmes/update.html', {'form': editForm})
 
 
 @login_required    
@@ -103,7 +105,7 @@ def deleteProgramme(request, pk):
         pickProgramme.delete()
         return redirect('/Programme')
     context = {'item': pickProgramme} 
-    return render(request, 'SchoolApp/accademics/Programmes/delete.html', context)
+    return render(request, 'SchoolApp/Academics/Programmes/delete.html', context)
 
 #school type viewn //////////////////////////////////////////////////////////////////////
 @login_required    
@@ -117,7 +119,7 @@ def SchoolTypeView(request):
         SchoolTypes = paginator.page(1)
     except EmptyPage:
         SchoolTypes = paginator.page(paginator.num_pages)
-    return render(request, 'SchoolApp/accademics/schoolTypes/list.html', {'SchoolTypes': SchoolTypes}) 
+    return render(request, 'SchoolApp/Academics/schoolTypes/list.html', {'SchoolTypes': SchoolTypes}) 
 
 @login_required    
 def createSchoolType(request):
@@ -126,7 +128,7 @@ def createSchoolType(request):
         if form.is_valid():
             form.save()
             return redirect('/createSchoolType')
-    return render(request, 'SchoolApp/accademics/schoolTypes/create.html', {'form': form})
+    return render(request, 'SchoolApp/Academics/schoolTypes/create.html', {'form': form})
 
 @login_required    
 def editSchoolType(request, pk):
@@ -135,7 +137,7 @@ def editSchoolType(request, pk):
     if editForm.is_valid():
         editForm.save()
         return redirect('/SchoolType')
-    return render(request, 'SchoolApp/accademics/schoolTypes/update.html', {'form': editForm})
+    return render(request, 'SchoolApp/Academics/schoolTypes/update.html', {'form': editForm})
 
 @login_required    
 def deleteSchoolType(request, pk):
@@ -146,7 +148,7 @@ def deleteSchoolType(request, pk):
         return redirect('/SchoolType')
     context = {'item': pickSchoolType}
  
-    return render(request, 'SchoolApp/accademics/schoolTypes/delete.html', context)
+    return render(request, 'SchoolApp/Academics/schoolTypes/delete.html', context)
 
 
 
@@ -163,7 +165,7 @@ def courseView(request):
         courses = paginator.page(1)
     except EmptyPage:
         courses = paginator.page(paginator.num_pages)
-    return render(request, 'SchoolApp/accademics/Courses/list.html', {'courses': courses})  
+    return render(request, 'SchoolApp/Academics/Courses/list.html', {'courses': courses})  
 
 @login_required    
 def createCourse(request):
@@ -173,7 +175,7 @@ def createCourse(request):
             form.save()
             return redirect('/create')
 
-    return render(request, 'SchoolApp/accademics/Courses/create.html', {'form': form})
+    return render(request, 'SchoolApp/Academics/Courses/create.html', {'form': form})
 
 @login_required    
 def editcourse(request, pk):
@@ -183,7 +185,7 @@ def editcourse(request, pk):
     if editForm.is_valid():
         editForm.save()
         return redirect('/course')
-    return render(request, 'SchoolApp/accademics/Courses/update.html', {'form': editForm})
+    return render(request, 'SchoolApp/Academics/Courses/update.html', {'form': editForm})
 
 @login_required    
 def deletecourse(request, pk):
@@ -192,7 +194,7 @@ def deletecourse(request, pk):
         pickCourse.delete()
         return redirect('/course')
     context = {'item': pickCourse} 
-    return render(request, 'SchoolApp/accademics/Courses/delete.html', context)
+    return render(request, 'SchoolApp/Academics/Courses/delete.html', context)
 
 #Section view //////////////////////////////////////////////////////////////////////////
 @login_required    
@@ -207,18 +209,19 @@ def SectionView(request):
         Sections = paginator.page(1)
     except EmptyPage:
         Sections = paginator.page(paginator.num_pages)
-    return render(request, 'SchoolApp/accademics/Sections/list.html', {'Sections': Sections})  
+    return render(request, 'SchoolApp/Academics/Sections/list.html', {'Sections': Sections})  
 
 @login_required    
 def createSection(request):
     form = SectionForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean()
             form.save()
             
             messages.success(request, "Section created succesful" )
             return redirect('/createSection')
-    return render(request, 'SchoolApp/accademics/Sections/create.html', {'form': form})
+    return render(request, 'SchoolApp/Academics/Sections/create.html', {'form': form})
 
 @login_required    
 def editSection(request, pk):
@@ -228,7 +231,7 @@ def editSection(request, pk):
     if editForm.is_valid():
         editForm.save()
         return redirect('/Section')
-    return render(request, 'SchoolApp/accademics/Sections/update.html', {'form': editForm})
+    return render(request, 'SchoolApp/Academics/Sections/update.html', {'form': editForm})
 
 
 @login_required    
@@ -238,7 +241,7 @@ def deleteSection(request, pk):
         pickSection.delete()
         return redirect('/Section')
     context = {'item': pickSection} 
-    return render(request, 'SchoolApp/accademics/Sections/delete.html', context)
+    return render(request, 'SchoolApp/Academics/Sections/delete.html', context)
 
 #Subject view //////////////////////////////////////////////////////////////////////////
 @login_required    
@@ -253,16 +256,17 @@ def SubjectView(request):
         Subjects = paginator.page(1)
     except EmptyPage:
         Subjects = paginator.page(paginator.num_pages)
-    return render(request, 'SchoolApp/accademics/Subjects/list.html', {'Subjects': Subjects})  
+    return render(request, 'SchoolApp/Academics/Subjects/list.html', {'Subjects': Subjects})  
 
 @login_required    
 def createSubject(request):
     form = SubjectForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
             form.save()
             return redirect('/createSubject')
-    return render(request, 'SchoolApp/accademics/Subjects/create.html', {'form': form})
+    return render(request, 'SchoolApp/Academics/Subjects/create.html', {'form': form})
 
 @login_required    
 def editSubject(request, pk):
@@ -272,7 +276,7 @@ def editSubject(request, pk):
     if editForm.is_valid():
         editForm.save()
         return redirect('/Subject')
-    return render(request, 'SchoolApp/accademics/Subjects/update.html', {'form': editForm})
+    return render(request, 'SchoolApp/Academics/Subjects/update.html', {'form': editForm})
 
 @login_required    
 def deleteSubject(request, pk):
@@ -281,7 +285,7 @@ def deleteSubject(request, pk):
         pickSubject.delete()
         return redirect('/Subject')
     context = {'item': pickSubject} 
-    return render(request, 'SchoolApp/accademics/Subjects/delete.html', context)
+    return render(request, 'SchoolApp/Academics/Subjects/delete.html', context)
 
 
 
@@ -386,26 +390,30 @@ def StudentAdmissionView(request):
 def createStudentAdmission(request):
     form = StudentAdmissionForm(request.POST  or None,request.FILES or None)
     Now = date.today()
+    Programmes = Programme.objects.all()
+    
     if request.method == 'POST':
-
 
         if form.is_valid():
             newform = form.save(commit=False)
-            newform.AdmissionNumber = f'ADM-{Now.year}{Now.day}{Now.month}/{Now.year}'
+            value = randint(0, 1000)
+            newform.AdmissionNumber = f'ADM-{value}/{Now.year}'
             newform.AdmissionDate = Now
             newform.PhotoURL = f"http://127.0.0.1:8000/{newform.Photo.url}"  
             newform.BirthCertificateUrl = f"http://127.0.0.1:8000/{newform.BirthCertificate.url}"  
-            newform.ResultCertificateUrl = f"http://127.0.0.1:8000/{newform.ResultCertificate.url}"  
-           
-            # if newform.AdmissionStatus == 'Approved':
-
-
+            newform.ResultCertificateUrl = f"http://127.0.0.1:8000/{newform.ResultCertificate.url}" 
+            newform.RegistrationStatus == 'Unregistered'
             newform.save()
             messages.success(request, "Form Submitted succesful" )
             return redirect('/createStudentAdmission')
         else:
             messages.error(request, "Form Error")
-    return render(request, 'SchoolApp/StudentAdmissions/create.html', {'form': form})
+            return render(request, 'SchoolApp/StudentAdmissions/create.html', {'form': form})
+    
+        # if _Programme and Questions.objects.filter(paper=paper).exists:
+        #    context['questions'] = Questions.objects.filter(paper=paper)
+        return render(request, 'SchoolApp/StudentAdmissions/create.html', context)
+    return render(request, 'SchoolApp/StudentAdmissions/create.html', {'form': form,'Programmes':Programmes})
 
 @login_required    
 def editStudentAdmission(request, pk):
@@ -498,6 +506,7 @@ def createHostel(request):
     form = HostelForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
             form.save()
             return redirect('/createHostel')
     return render(request, 'SchoolApp/Hostels/Hostel/create.html', {'form': form})
@@ -660,6 +669,7 @@ def createRoute(request):
     form = RouteForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
             form.save()
             return redirect('/createRoute')
     return render(request, 'SchoolApp/Transports/Routes/create.html', {'form': form})
@@ -705,6 +715,7 @@ def createDriver(request):
     form = DriverForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
             form.save()
             messages.success(request, "Form Submitted succesful" )
             return redirect('/createDriver')
@@ -715,7 +726,7 @@ def createDriver(request):
 @login_required    
 def editDriver(request, pk):
     pickDriver = Driver.objects.get(pk=pk)
-    editForm = VehicleUpdateForm(request.POST or None, instance=pickDriver)
+    editForm = DriverForm(request.POST or None, instance=pickDriver)
 
     if editForm.is_valid():
         editForm.save()
@@ -812,11 +823,13 @@ def createAssignVehicle(request):
             ExistingfeeType = FeeType.objects.filter(Name = newform.Route.RouteTitle).first()
             if ExistingfeeType == None:
                 feetype.Name = f'{newform.Vehicle.VehicleModel} ({newform.Route.RouteTitle})'
+                form.full_clean() 
                 feetype.save()
 
             fee.FeeType = feetype
             fee.AcademicYear = now().year
             fee.Amount = newform.Route.Fare
+            form.full_clean() 
             fee.save()
             newform.save()
             return redirect('/createAssignVehicle')
@@ -921,6 +934,14 @@ def deleteStudentEnrollment(request, pk):
 @login_required    
 def DesignationView(request):
     DesignationsList = Designation.objects.all()
+    if len(DesignationsList) ==0:
+        Teacher = Designation(DesignationName = "Teacher")
+        Librarian = Designation(DesignationName = "Librarian")
+        Accountant = Designation(DesignationName = "Accountant")
+        Accountant.save()
+        Librarian.save()
+        Teacher.save()
+    DesignationsList = Designation.objects.all()    
     page = request.GET.get('page', 1)
     Now = date.today()
 
@@ -942,7 +963,7 @@ def createDesignation(request):
     form = DesignationForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-           
+            form.full_clean() 
             # newform = form.save(commit=False)
             # newform.SchoolType = newform.RegisteredStudent.SchoolType
             form.save()
@@ -995,7 +1016,7 @@ def createDepartment(request):
     form = DepartmentForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-           
+            form.full_clean() 
             # newform = form.save(commit=False)
             # newform.SchoolType = newform.RegisteredStudent.SchoolType
             form.save()
@@ -1026,6 +1047,14 @@ def deleteDepartment(request, pk):
 @login_required    
 def RoleView(request):
     RolesList = Role.objects.all()
+    if len(RolesList) ==0:
+        Teacher = Role(RoleName = "Teacher")
+        Librarian = Role(RoleName = "Librarian")
+        Accountant = Role(RoleName = "Accountant")
+        Accountant.save()
+        Librarian.save()
+        Teacher.save()
+    RolesList = Role.objects.all()    
     page = request.GET.get('page', 1)
     Now = date.today()
 
@@ -1047,7 +1076,7 @@ def createRole(request):
     form = RoleForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-           
+            form.full_clean() 
             # newform = form.save(commit=False)
             # newform.SchoolType = newform.RegisteredStudent.SchoolType
             form.save()
@@ -1100,7 +1129,7 @@ def createStaff(request):
     form = StaffForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
-           
+            form.full_clean() 
             # newform = form.save(commit=False)
             # newform.SchoolType = newform.RegisteredStudent.SchoolType
             form.save()
@@ -1290,6 +1319,9 @@ def deleteStaffAttendance(request, pk):
 @login_required    
 def ProductCategoryView(request):
     ProductCategorysList = ProductCategory.objects.all()
+    if len(ProductCategorysList) == 0:
+        _ProductCategory = ProductCategory(Name = 'Uniform')
+        _ProductCategory.save()
     page = request.GET.get('page', 1)
     Now = date.today()
 
@@ -1364,20 +1396,8 @@ def createUnit(request):
     form = UnitForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            form.full_clean() 
            
-            # newform = form.save(commit=False)
-            # _academicYear = AcademicYear()
-            # start_year = 1980
-            # end_year = 2090
-            # years = []
-            # for year in range(start_year, end_year):
-            #     year+=1
-            #     years.append(year)
-
-            # for item in years:
-            #     _academicYear = AcademicYear()
-            #     _academicYear.Year = item
-            #     _academicYear.save()    
             form.save()
             messages.success(request, "Unit created succesful" )
             return redirect('/createUnit')
@@ -1478,7 +1498,7 @@ def ProductView(request):
 
 @login_required    
 def createProduct(request):
-    
+    Categories = ProductCategory.objects.all()
     form = ProductForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -1492,7 +1512,7 @@ def createProduct(request):
             messages.error(request, "form Error" )
             return redirect('/createProduct')
 
-    return render(request, 'SchoolApp/Services/Products/create.html', {'form': form})
+    return render(request, 'SchoolApp/Services/Products/create.html', {'form': form,'Categories':Categories})
 
 @login_required    
 def editProduct(request, pk):
@@ -1501,7 +1521,6 @@ def editProduct(request, pk):
 
     if editForm.is_valid():
         newform = editForm.save(commit=False)
-        newform.Stock = 0
         newform.save()
         return redirect('/Product')
     return render(request, 'SchoolApp/Services/Products/update.html', {'form': editForm})
@@ -1566,7 +1585,7 @@ def editPurchase(request, pk):
             newform = purchaseItemForm.save(commit=False)
             newform.Purchase = pickPurchase
             pickProduct = newform.Product
-            newform.UnitPrice = pickProduct.SellingPrice
+           # newform.UnitPrice = pickProduct.SellingPrice
             newform.Amount = newform.Quantity * newform.UnitPrice
             newform.save()
 
@@ -1854,7 +1873,7 @@ def createFeeDiscount(request):
     form = FeeDiscountForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "FeeDiscount created succesful" )
             return redirect('/createFeeDiscount')
@@ -1902,7 +1921,7 @@ def createFee(request):
     form = FeeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "Fee created succesful" )
             return redirect('/createFee')
@@ -2228,7 +2247,7 @@ def createAverage(request):
     form = AverageForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "Average created succesful" )
             return redirect('/createAverage')
@@ -2275,7 +2294,7 @@ def createDivisionGrade(request):
     form = DivisionGradeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "DivisionGrade created succesful" )
             return redirect('/createDivisionGrade')
@@ -2323,7 +2342,7 @@ def createGPAGrade(request):
     form = GPAGradeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "GPAGrade created succesful" )
             return redirect('/createGPAGrade')
@@ -2371,7 +2390,7 @@ def createExamination(request):
     form = ExaminationForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-         
+            form.full_clean() 
             form.save()
             messages.success(request, "Examination created succesful" )
             return redirect('/createExamination')
@@ -2831,3 +2850,65 @@ def deleteAboutSchool(request, pk):
         return redirect('/AboutSchool')
     context = {'item': pickAboutSchool} 
     return render(request, 'SchoolApp/CMS/AboutSchool/delete.html', context)    
+
+#AssignTeacher view //////////////////////////////////////////////////////////////////////////
+@login_required    
+def AssignTeacherView(request):
+    AssignTeachersList = AssignTeacher.objects.all()
+    # if len(AssignTeachersList) ==0:
+    #     Teacher = AssignTeacher(AssignTeacherName = "Teacher")
+    #     Librarian = AssignTeacher(AssignTeacherName = "Librarian")
+    #     Accountant = AssignTeacher(AssignTeacherName = "Accountant")
+    #     Accountant.save()
+    #     Librarian.save()
+    #     Teacher.save()
+    page = request.GET.get('page', 1)
+    Now = date.today()
+
+    myFilter = AssignTeacherFilter(request.GET, queryset=AssignTeachersList)
+    AssignTeachersList = myFilter.qs
+
+    paginator = Paginator(AssignTeachersList, 50)
+    try:
+        AssignTeachers = paginator.page(page)
+    except PageNotAnInteger:
+        AssignTeachers = paginator.page(1)
+    except EmptyPage:
+        AssignTeachers = paginator.page(paginator.num_pages)
+    return render(request, 'SchoolApp/Academics/AssignTeachers/list.html', {'AssignTeachers': AssignTeachers, 'myFilter': myFilter})  
+
+@login_required    
+def createAssignTeacher(request):
+    
+    form = AssignTeacherForm(request.POST or None)
+    Staffs = Staff.objects.filter(Role__RoleName = "Teacher")
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.full_clean() 
+            # newform = form.save(commit=False)
+            # newform.SchoolType = newform.RegisteredStudent.SchoolType
+            form.save()
+            messages.success(request, "AssignTeacher created succesful" )
+            return redirect('/createAssignTeacher')
+    return render(request, 'SchoolApp/Academics/AssignTeachers/create.html', {'form': form, 'Staffs':Staffs})
+
+@login_required    
+def editAssignTeacher(request, pk):
+    pickAssignTeacher = AssignTeacher.objects.get(pk=pk)
+    editForm = AssignTeacherForm(request.POST or None, instance=pickAssignTeacher)
+    Staffs = Staff.objects.filter(Role__RoleName = "Teacher")
+    if editForm.is_valid():
+        editForm.save()
+        return redirect('/AssignTeacher')
+    return render(request, 'SchoolApp/Academics/AssignTeachers/update.html', {'form': editForm, 'Staffs':Staffs,'Id':pk})
+
+
+@login_required    
+def deleteAssignTeacher(request, pk):
+    pickAssignTeacher = AssignTeacher.objects.get(pk=pk)
+    if request.method == 'POST':
+        pickAssignTeacher.delete()
+        return redirect('/AssignTeacher')
+    context = {'item': pickAssignTeacher} 
+    return render(request, 'SchoolApp/Academics/AssignTeachers/delete.html', context)    

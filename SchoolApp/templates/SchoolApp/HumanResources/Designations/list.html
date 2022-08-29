@@ -53,9 +53,12 @@
                             <a class="btn btn-primary" href="{% url 'updateDesignation' Designation.id %}"
                               >Edit</a
                             >
+                            {% if Designation.DesignationName != "Teacher" and Designation.DesignationName != "Librarian" and Designation.DesignationName != "Accountant" %}
                             <a class="btn btn-danger" href="{% url 'deleteDesignation' Designation.id %}" 
-                              >Delete</a
-                            >
+                            >Delete</a
+                          >
+                            {% endif %}
+                           
                           </td>
                         </tr>
                         {% endfor %}

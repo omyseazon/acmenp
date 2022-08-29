@@ -125,3 +125,8 @@ class NewsFilter(django_filters.FilterSet):
         model = News
         #2) all & exclude(override all)
         fields = ('Title',)
+
+class AssignTeacherFilter(django_filters.FilterSet):
+	class Meta:
+		model = AssignTeacher
+		fields = '__all__'		

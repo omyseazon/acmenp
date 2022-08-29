@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Assign Teacher</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Assign Teacher
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      {% include 'SchoolApp/includes/messages.html' %}
+     <div class="row">
+      <div class="col-md-6">
+        {% if form.errors %}
+        {% for key, value in form.errors.items %} 
+            <div class="row testrow">
+                <div class="alert alert-error text-danger">
+                    {{ value | striptags }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" name="save_and_add" class="btn btn-info">Save</button>
+                  <a href="{% url 'AssignTeacher' %}" type="submit" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                
+                    {% comment %} <h4 class="card-title">Edit Role</h4> {% endcomment %}
+                    <div class="form-group row">
+                      <label class="col-sm-3 text-right control-label col-form-label">Staff</label>
+                      <div class="col-sm-9">
+                        <select class="form-control" name="Staff" id="Staff">
+                          <option value="">--------</option>
+                          {% for value in Staffs  %}
+                          <option value="{{value.id}}">{{value.FirstName}} {{value.MiddleName}} {{value.LastName}}</option>
+                      {% endfor %}
+                        
+                       </select>
+                      </div>
+                    </div>
+
+                    {% comment %} <div class="form-group row">
+                        <label  class="col-sm-3 text-right control-label col-form-label">Staff</label>
+                        <div class="col-sm-9">
+                          {% render_field form.Staff placeholder=form.Staff.label class+="form-control"  %}
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="form-group row">
+                      <label  class="col-sm-3 text-right control-label col-form-label">Class</label>
+                      <div class="col-sm-9">
+                        {% render_field form.Course placeholder="Class" class+="form-control"  %}
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label  class="col-sm-3 text-right control-label col-form-label">Stream</label>
+                    <div class="col-sm-9">
+                      {% render_field form.Stream placeholder=form.Stream.label class+="form-control"  %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label  class="col-sm-3 text-right control-label col-form-label">Subjects</label>
+                  <div class="col-sm-9">
+                    {% render_field form.Subjects placeholder=form.Subjects.label class+="form-control"  %}
+                  </div>
+              </div>
+                </div>
+              </div>
+            </form>
+        
+
+     </div>
+    </div>
+    </div>
+
+    {% include 'SchoolApp/includes/footer.html' %}
+  </div>
+ 
+{% endblock content %}
+    
+ 
+
+

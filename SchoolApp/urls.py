@@ -268,6 +268,12 @@ urlpatterns = [
       path('updateContent/<int:pk>', views.editContent, name = 'updateContent'),
       path('deleteContent/<int:pk>', views.deleteContent, name='deleteContent'),
 
+      #AssignTeacher urls
+      path('AssignTeacher', views.AssignTeacherView, name = 'AssignTeacher'),
+      path('createAssignTeacher', views.createAssignTeacher, name = 'createAssignTeacher'),
+      path('updateAssignTeacher/<int:pk>', views.editAssignTeacher, name = 'updateAssignTeacher'),
+      path('deleteAssignTeacher/<int:pk>', views.deleteAssignTeacher, name='deleteAssignTeacher'),
+
       #basic urls
       path('dashboard', views.index, name='index'),
       path('', views.home, name='home'),

@@ -27,7 +27,15 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
       {% include 'SchoolApp/includes/messages.html' %}
-    
+      {% if form.errors %}
+      {% for key, value in form.errors.items %} 
+          <div class="row testrow">
+              <div class="alert alert-error text-danger">
+                  {{ value | striptags }}
+              </div>
+          </div>
+      {% endfor %}
+  {% endif %}
       <form method="POST" class="form-horizontal" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="border-top">
@@ -280,12 +288,20 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 text-right control-label col-form-label"
-                  >Relation</label
-                >
+                <label class="col-sm-3 text-right control-label col-form-label">Relation</label>
                 <div class="col-sm-9">
-                  {% render_field form.RelativeRelation placeholder=form.RelativeRelation.label class+="form-control" %}
-                </div>
+                  <select class="form-control" name="RelativeRelation" id="seeAnotherField">
+                    {% for value, text in form.RelativeRelation.field.choices %}
+                     {% if form.RelativeRelation.value == value %}
+                     <option value="{{ form.RelativeRelation.value }}"{% if form.RelativeRelation.value != "" %} selected{% endif %}>{{ form.RelativeRelation.value }}</option>
+
+                     {% else %}
+                     <option value="{{value}}">{{text}}</option> 
+                     {% endif %}
+                {% endfor %}
+                  
+                 </select>               
+                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-3 text-right control-label col-form-label"
@@ -334,7 +350,7 @@
         </div>
       </div>
         <div class="card">
-          <div class="card">
+          <div class="card" id="Father">
                   <div class="card-body">
                     <h4 class="card-title">Father Information</h4>
                     <div class="form-group row">
@@ -373,7 +389,10 @@
                           {% render_field form.FatherHomeAddress placeholder=form.FatherHomeAddress.label class+="form-control"  %}
                         </div>
                     </div>
-             <hr>
+                  </div> 
+                 </div>
+                 <div class="card" id="Mother">
+                  <div class="card-body">
                     <h4 class="card-title">Mother Information</h4>
                     <div class="form-group row">
                       <label class="col-sm-3 text-right control-label col-form-label">First Name</label>

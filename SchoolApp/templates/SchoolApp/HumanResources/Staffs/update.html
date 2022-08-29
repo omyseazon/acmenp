@@ -31,6 +31,15 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
+      {% if form.errors %}
+      {% for key, value in form.errors.items %} 
+          <div class="row testrow">
+              <div class="alert alert-error text-danger">
+                  {{ value | striptags }}
+              </div>
+          </div>
+      {% endfor %}
+  {% endif %}
       <form method="POST" class="form-horizontal" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="border-top">
@@ -39,10 +48,33 @@
             <a href="/Staff"  class="btn btn-danger">Close</a>
           </div>
         </div>
-  
-        <div class="row ">
+        {% comment %} <div class="row ">
+          {%if form != null and form.instance.Role.RoleName == "Teacher" %}
+               
+          <div class="col-md-10">
+              <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Assign Class and subject</h4>
+                       
+                      <div class="form-group row">
+                          <label class="col-sm-3 text-right control-label col-form-label"></label>
+                          <div class="col-sm-9">
 
-          <div class="col-md-6 ">
+                          </div>
+                      </div>
+                     
+                     
+                  
+              </div>
+            </div>
+       
+          {% endif %}
+        </div>
+          <hr> {% endcomment %}
+        <div class="row ">
+         
+          <div class="col-md-12 ">
+           
             <div class="card">
               <div class="card-body">
   
@@ -145,7 +177,7 @@
             </div>
           </div>
   
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-body">
                 <div class="form-group row">
@@ -227,7 +259,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </form>
     

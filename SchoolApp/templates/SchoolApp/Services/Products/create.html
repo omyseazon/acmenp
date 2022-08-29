@@ -34,7 +34,15 @@
       {% include 'SchoolApp/includes/messages.html' %}
      <div class="row">
       <div class="col-md-6">
-        
+        {% if form.errors %}
+        {% for key, value in form.errors.items %} 
+            <div class="row testrow">
+                <div class="alert alert-error text-danger">
+                    {{ value | striptags }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
             <form method="POST" class="form-horizontal">
               {% csrf_token %}
               <div class="border-top">
@@ -54,25 +62,49 @@
         {% render_field form.ProductName placeholder=form.ProductName.label class+="form-control" id="ProductName" %}
       </div>
   </div>
-  <div class="form-group row">
+  {% comment %} <div class="form-group row">
     <label  class="col-sm-3 text-right control-label col-form-label">Category</label>
     <div class="col-sm-9">
       {% render_field form.Category placeholder=form.Category.label class+="form-control" id="Category" %}
     </div>
+</div> {% endcomment %}
+<div class="form-group row">
+  <label class="col-sm-3 text-right control-label col-form-label">Category</label>
+  <div class="col-sm-9">
+    <select class="form-control" name="Category" id="Category">
+      <option value="">--------</option>
+      {% for value in Categories  %}
+      <option value="{{value.id}}">{{value.Name}}</option>
+  {% endfor %}
+    
+   </select>
+  </div>
 </div>
-
+<div class="form-group row" id="Size">
+  <label  class="col-sm-3 text-right control-label col-form-label">Size</label>
+  <div class="col-sm-9">
+    {% render_field form.Size placeholder=form.Size.label class+="form-control" id="SizeField" %}
+  </div>
+</div>
+<div class="form-group row" id="Color">
+<label  class="col-sm-3 text-right control-label col-form-label">Color</label>
+<div class="col-sm-9">
+  {% render_field form.Color placeholder=form.Color.label class+="form-control" id="ColorField" %}
+</div>
+</div>
+<div class="form-group row"  id="AgeOrClass">
+  <label  class="col-sm-3 text-right control-label col-form-label">AgeOrClass</label>
+  <div class="col-sm-9">
+    {% render_field form.AgeOrClass placeholder=form.AgeOrClass.label class+="form-control" id="AgeOrClassField" %}
+  </div>
+</div>
 <div class="form-group row">
   <label  class="col-sm-3 text-right control-label col-form-label">Unit</label>
   <div class="col-sm-9">
     {% render_field form.Unit placeholder=form.Unit.label class+="form-control"  %}
   </div>
 </div>
-<div class="form-group row">
-  <label  class="col-sm-3 text-right control-label col-form-label">AgeOrClass</label>
-  <div class="col-sm-9">
-    {% render_field form.AgeOrClass placeholder=form.AgeOrClass.label class+="form-control" id="AgeOrClass" %}
-  </div>
-</div>
+
 <div class="form-group row">
 <label  class="col-sm-3 text-right control-label col-form-label">Status</label>
 <div class="col-sm-9">
@@ -87,20 +119,8 @@
 </div>
 </div>
 
-<hr>
-<h4 class="card-title">For Uniform Product (Optional)</h4> 
-<div class="form-group row">
-  <label  class="col-sm-3 text-right control-label col-form-label">Size</label>
-  <div class="col-sm-9">
-    {% render_field form.Size placeholder=form.Size.label class+="form-control" id="Size" %}
-  </div>
-</div>
-<div class="form-group row">
-<label  class="col-sm-3 text-right control-label col-form-label">Color</label>
-<div class="col-sm-9">
-  {% render_field form.Color placeholder=form.Color.label class+="form-control" id="Color" %}
-</div>
-</div>
+
+
 </div>
                 </div>
               </div>

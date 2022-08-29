@@ -29,7 +29,15 @@
   <!-- ============================================================== -->
   <div class="container-fluid">
     {% include 'SchoolApp/includes/messages.html' %}
-  
+    {% if form.errors %}
+    {% for key, value in form.errors.items %} 
+        <div class="row testrow">
+            <div class="alert alert-error text-danger">
+                {{ value | striptags }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
     <form method="POST" class="form-horizontal" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="border-top">
@@ -141,18 +149,25 @@
               <div class="form-group row">
                 <label class="col-sm-3 text-right control-label col-form-label">Programme</label>
                 <div class="col-sm-9">
-                  {% render_field form.Programme placeholder=form.Programme.label class+="form-control" %}
+                  <select class="form-control" name="Programme" id="Programme">
+                    <option value="">--------</option>
+                    {% for value in Programmes  %}
+                    <option value="{{value.id}}">{{value.Name}}</option>
+                {% endfor %}
+                  
+                 </select>
+                  {% comment %} {% render_field form.Programme placeholder=form.Programme.label class+="form-control" %} {% endcomment %}
                 </div>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-3 text-right control-label col-form-label">ClassName
+              <div class="form-group row" id="ClassLevel">
+                <label class="col-sm-3 text-right control-label col-form-label">Class Level
                 </label>
                 <div class="col-sm-9">
                   {% render_field form.ClassName placeholder=form.ClassName.label class+="form-control" %}
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 text-right control-label col-form-label">SchoolType</label>
+                <label class="col-sm-3 text-right control-label col-form-label">School Type</label>
                 <div class="col-sm-9">
                   {% render_field form.SchoolType  placeholder=form.SchoolType.label class+="form-control" %}
                 </div>
@@ -220,7 +235,13 @@
             <div class="form-group row">
               <label class="col-sm-3 text-right control-label col-form-label">Relation</label>
               <div class="col-sm-9">
-                {% render_field form.RelativeRelation placeholder=form.RelativeRelation.label class+="form-control" %}
+                <select class="form-control" name="RelativeRelation" id="seeAnotherField">
+                  {% for value, text in form.RelativeRelation.field.choices %}
+                  <option value="{{value}}">{{text}}</option>
+              {% endfor %}
+                
+               </select>
+                {% comment %} {% render_field form.RelativeRelation placeholder=form.RelativeRelation.label class+="form-control" %} {% endcomment %}
               </div>
             </div>
             <div class="form-group row">
@@ -260,10 +281,10 @@
         </div>
       </div>
  
-      <div class="col-md-12">
-        <div class="card">
+      <div class="col-md-12" >
+        <div class="card" id="Father">
                 <div class="card-body">
-                  <h4 class="card-title">Father Information</h4>
+                  <h4 class="card-title" >Father Information</h4>
                   <div class="form-group row">
                       <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
                       <div class="col-sm-9">
@@ -300,8 +321,12 @@
                         {% render_field form.FatherHomeAddress placeholder=form.FatherHomeAddress.label class+="form-control"  %}
                       </div>
                   </div>
-           <hr>
-                  <h4 class="card-title">Mother Information</h4>
+                </div>
+              </div>
+          
+           <div class="card" id="Mother">
+            <div class="card-body">
+                  <h4 class="card-title" >Mother Information</h4>
                   <div class="form-group row">
                     <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
                     <div class="col-sm-9">

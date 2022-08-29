@@ -32,6 +32,15 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
       {% include 'SchoolApp/includes/messages.html' %}
+      {% if form.errors %}
+      {% for key, value in form.errors.items %} 
+          <div class="row testrow">
+              <div class="alert alert-error text-danger">
+                  {{ value | striptags }}
+              </div>
+          </div>
+      {% endfor %}
+  {% endif %}
      <div class="row">
       <div class="col-md-6">
         

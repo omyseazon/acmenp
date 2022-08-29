@@ -314,3 +314,8 @@ class AboutSchoolForm(forms.ModelForm):
 	class Meta:
 		model = AboutSchool
 		fields = '__all__'	
+
+class AssignTeacherForm(forms.ModelForm):
+	class Meta:
+		model = AssignTeacher
+		fields = '__all__'		

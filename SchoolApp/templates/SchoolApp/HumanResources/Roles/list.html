@@ -15,7 +15,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Student Enrollments
+                  Roles
                 </li>
               </ol>
             </nav>
@@ -54,9 +54,11 @@
                             <a class="btn btn-primary" href="{% url 'updateRole' Role.id %}"
                               >Edit</a
                             >
+                            {% if Role.RoleName != "Teacher"  and Role.RoleName != "Librarian" and Role.RoleName != "Accountant"%}
+                            
                             <a class="btn btn-danger" href="{% url 'deleteRole' Role.id %}" 
-                              >Delete</a
-                            >
+                              >Delete</a>
+                              {% endif %}
                           </td>
                         </tr>
                         {% endfor %}
